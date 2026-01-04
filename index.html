@@ -9,8 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        
-        /* PENGATURAN DASAR DAN TEMA GELAP */
+        /* PENGATURAN DASAR */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -26,7 +25,7 @@
             padding: 0 20px;
         }
 
-        /* BAGIAN HEADER */
+        /* HEADER */
         header {
             background-color: #1c1c1c; 
             border-bottom: 1px solid #333;
@@ -67,7 +66,9 @@
             padding: 0;
         }
 
-        nav li { margin: 0 20px; }
+        nav li {
+            margin: 0 20px; 
+        }
 
         nav a {
             text-decoration: none;
@@ -82,7 +83,6 @@
         nav a.active { color: #fff; border-bottom: 2px solid #fff; }
 
         .search-bar { display: flex; }
-
         .search-bar input {
             background-color: #2b2b2b; 
             border: 1px solid #444;
@@ -93,8 +93,6 @@
             font-size: 14px;
         }
         
-        .search-bar input:focus { outline: none; border-color: #555; }
-
         .search-bar button {
             background-color: #2b2b2b; 
             border: 1px solid #444;
@@ -105,14 +103,10 @@
             cursor: pointer;
         }
 
-        /* BAGIAN MAIN CONTENT */
-        main {
-            padding-top: 30px; 
-            padding-bottom: 50px;
-        }
+        main { padding-top: 30px; padding-bottom: 50px; }
         
         /* ========================================= */
-        /* GAYA SLIDER UTAMA */
+        /* GAYA SLIDE FULL SCREEN & TEKS DI TENGAH */
         /* ========================================= */
         
         .custom-slider-container {
@@ -121,260 +115,190 @@
             height: 600px; 
             border-radius: 10px;
             overflow: hidden;
-            background-color: #1c1c1c; 
+            background-color: #000; 
             display: flex;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             margin-bottom: 40px;
         }
 
-        /* Bagian KIRI: Konten Informasi */
+        /* Bagian Konten Teks di Tengah */
         .custom-slider-container .introduce {
-            width: 45%; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            position: relative;
-            z-index: 20;
+            z-index: 30;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding-left: 30px; 
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            pointer-events: none;
         }
         
         .introduce .wrapper {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 0 20px 50px 30px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            pointer-events: none;
-            overflow: hidden;
-            /* Gradasi halus di bagian bawah wrapper agar teks terbaca di segala kondisi */
-            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%);
-        }
-
-        /* Gaya Transisi Teks */
-        /* Perbaikan: Menggunakan div bukan span untuk selektor */
-        .introduce .wrapper div * {
+            width: 80%;
             opacity: 0;
-            transform: translateY(50px);
-            transition: 0.5s ease;
+            transition: 0.8s ease;
             pointer-events: none;
-            transition-delay: calc(var(--idx) * 0.08s);
         }
         
-        .introduce .wrapper.active div * {
+        .introduce .wrapper.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .introduce .wrapper span * {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.6s ease;
+            transition-delay: calc(var(--idx) * 0.1s);
+        }
+        
+        .introduce .wrapper.active span * {
             opacity: 1;
             transform: translateY(0);
-            pointer-events: all;
-            transition-delay: calc(var(--idx) * 0.1s);
         }
 
         .introduce .country {
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 500;
             letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            display: block; /* Pastikan dia block agar tidak menumpuk */
-        }
-
-        .introduce .place {
-            margin-top: 5px;
+            display: block;
             margin-bottom: 10px;
         }
 
-        /* STYLE KHUSUS UNTUK JUDUL DENGAN BACKGROUND HITAM */
         .introduce .place h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 400;
+            font-size: 4.5rem;
             text-transform: uppercase;
-            line-height: 1.2;
-            letter-spacing: 1px;
-            color: #fff;
-            
-            /* INI KUNCINYA: Background hitam hanya di teks */
-            background-color: rgba(0, 0, 0, 0.7); /* Hitam Transparan */
-            display: inline; /* Agar background membungkus teks saja */
-            padding: 5px 15px; /* Jarak antara teks dan kotak hitam */
-            box-decoration-break: clone; /* Agar rapi jika teksnya 2 baris */
-            -webkit-box-decoration-break: clone;
+            margin: 10px 0;
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
 
-        .introduce .describe {
-            font-size: 0.9rem;
-            margin-top: 8px;
-            margin-bottom: 5px;
+        .introduce .describe p {
+            font-size: 1rem;
+            max-width: 650px;
+            margin: 15px auto;
             font-weight: 300;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            max-width: 80%;
+            line-height: 1.6;
         }
         
         .introduce .discover-button {
             font-family: 'Rubik', sans-serif;
-            background-color: transparent;
-            color: #ffffff;
-            border: 1px solid #ffffff;
-            border-radius: 20px;
-            padding: 8px 20px;
-            margin-top: 15px;
-            font-weight: 500;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            margin-top: 20px;
+            font-weight: 600;
             text-transform: uppercase;
             cursor: pointer;
-            transition: background-color 0.3s ease;
             pointer-events: all;
-            width: 130px;
-            text-align: center;
-        }
-        
-        .introduce .discover-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Bagian KANAN: Thumbnail dan Gambar */
+        /* Konten Gambar Full Screen */
         .custom-slider-container .content {
-            width: 55%; 
+            width: 100%;
             height: 100%;
             position: relative;
         }
 
-        /* List Thumbnail */
         .thumbnail-list {
             position: relative;
-            height: 100%; 
-            z-index: 10;
-        }
-        
-        .thumbnail-list .wrapper {
-            position: relative;
+            width: 100%;
             height: 100%;
-            z-index: 10;
-            display: flex;
         }
 
         .thumbnail {
             position: absolute;
-            top: 50%; 
-            transform: translateY(-50%);
-            width: 150px; 
-            height: 250px;
-            border-radius: 10px; 
-            overflow: hidden;
-            transition: 0.75s cubic-bezier(0.6, 0.1, 0.3, 1);
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 1s cubic-bezier(0.6, 0.1, 0.3, 1);
+            z-index: 10;
+        }
+        
+        .thumbnail.zoom {
+            opacity: 1;
+            z-index: 20;
         }
         
         .thumbnail img {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
-            transition: 0.75s ease;
-        }
-        
-        /* Thumbnail Utama (Paling Depan) */
-        .thumbnail.zoom {
-            height: 100%; 
-            width: 100%; 
-            transform: translate(-450px, -50%); 
-            filter: brightness(100%);
-            box-shadow: none;
-            transition: 1s cubic-bezier(0.6, 0.1, 0.3, 1);
-            z-index: 5; 
-        }
-
-        .thumbnail.zoom img {
-            filter: brightness(60%); /* Gambar sedikit digelapkan agar teks putih makin jelas */
+            object-fit: cover;
+            filter: brightness(40%);
         }
         
         /* Navigasi */
         .custom-slider-container .navigation {
             position: absolute;
-            bottom: 30px; 
-            right: 30px; 
+            bottom: 40px; 
+            right: 50px; 
             display: flex;
             align-items: center;
-            z-index: 20; 
+            z-index: 40; 
         }
         
-        .navigation .next-button {
+        .nav-btns {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .nav-btns button {
             font-family: 'Rubik', sans-serif;
             background-color: transparent;
             color: #ffffff;
             border: 1px solid #ffffff;
             border-radius: 50px;
-            width: 80px; 
+            width: 80px;
             height: 40px;
-            font-weight: 500;
-            text-transform: uppercase;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
+            transition: 0.3s;
         }
         
-        .navigation .next-button:hover:not(:disabled) {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .navigation .next-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .nav-btns button:hover {
+            background-color: #fff;
+            color: #000;
         }
         
         .navigation .line {
-            width: 50px; 
-            height: 2px;
-            background-color: #ffffff;
-            border-radius: 50px;
-            margin-right: 15px;
+            width: 50px;
+            height: 1px;
+            background-color: rgba(255,255,255,0.5);
+            margin-right: 20px;
         }
         
-        .navigation .ordinal-number {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .ordinal-number {
             width: 40px;
             height: 40px;
             overflow: hidden;
+            position: relative;
         }
         
         .ordinal-number h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem; 
-            font-weight: 400;
-            line-height: 1;
+            font-size: 2rem;
             position: absolute;
-            transform: translateY(200%); 
+            transform: translateY(100%); 
             transition: 0.5s ease;
+            margin: 0;
         }
         
-        .ordinal-number h2.active { transform: unset; }
-        
-        
-        /* GAYA BAWAH SLIDE */
-        .promo-banner { margin-bottom: 40px; }
+        .ordinal-number h2.active { transform: translateY(0); }
 
-        .promo-banner img {
-            width: 100%; 
-            height: auto; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-            display: block; 
-        }
-
+        /* PENGURUS KELAS (LENGKAP 850 BARIS LOGIKA) */
         .pengurus-section h2 {
             color: #fff;
             text-transform: uppercase;
             font-size: 24px;
-            font-weight: bold;
             border-bottom: 1px solid #444;
             padding-bottom: 10px;
             margin-bottom: 30px;
@@ -396,79 +320,23 @@
             background-color: #2b2b2b; 
             height: 220px; 
             overflow: hidden;
-            position: relative;
         }
         
         .card-img-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover; 
-            display: block;
         }
 
-        .card-info {
-            padding: 20px 10px;
-            text-align: center; 
-        }
+        .card-info { padding: 20px 10px; text-align: center; }
+        .card-info h3 { font-size: 16px; margin: 0 0 5px 0; }
+        .card-info p { color: #aaa; font-size: 14px; margin: 0; }
 
-        .card-info h3 {
-            color: #fff;
-            margin: 0 0 5px 0;
-            font-size: 16px; 
-        }
-
-        .card-info p {
-            color: #aaa;
-            margin: 0;
-            font-size: 14px;
-        }
-        
-        /* MEDIA QUERIES */
         @media (max-width: 768px) {
-            .header-container {
-                grid-template-columns: 1fr; 
-                justify-items: center;
-                gap: 20px;
-            }
-            .custom-slider-container {
-                flex-direction: column;
-                height: 400px;
-            }
-            .custom-slider-container .introduce {
-                width: 100%;
-                height: 30%;
-                padding: 0 10px;
-                justify-content: center;
-            }
-            .introduce .wrapper {
-                position: relative;
-                padding: 10px 10px;
-                height: auto;
-                background: none; /* Hapus gradasi di mobile jika mengganggu */
-            }
-            .introduce .country { font-size: 1rem; }
-            .introduce .place h1 { font-size: 2rem; padding: 2px 10px;}
-            .introduce .describe { display: none; } 
-            .introduce .discover-button { margin-top: 5px; width: 100px; padding: 5px 10px;}
-            
-            .custom-slider-container .content {
-                width: 100%;
-                height: 70%;
-            }
-            .thumbnail { display: none; }
-            .thumbnail.zoom {
-                width: 100%;
-                height: 100%;
-                transform: translate(0, -50%); 
-            }
-            .custom-slider-container .navigation {
-                bottom: 10px;
-                right: 10px;
-            }
-            .navigation .line { width: 30px; }
-            .navigation .next-button { width: 60px; height: 30px; font-size: 10px;}
+            .custom-slider-container { height: 450px; }
+            .introduce .place h1 { font-size: 2.5rem; }
+            .navigation { right: 50%; transform: translateX(50%); bottom: 20px; }
         }
-        
     </style>
 </head>
 <body>
@@ -476,10 +344,9 @@
     <header>
         <div class="container header-container">
             <div class="logo-area">
-                <img src="logo.jpg" alt="Logo Kelas ixbnueve" class="logo-img">
+                <img src="logo.jpg" alt="Logo" class="logo-img">
                 <span class="logo-name">ixbnueve</span>
             </div>
-            
             <nav>
                 <ul>
                     <li><a href="#" class="active">Home</a></li>
@@ -487,340 +354,152 @@
                     <li><a href="#">Daftar Pengurus</a></li>
                 </ul>
             </nav>
-            
             <div class="search-bar">
-                <input type="text" placeholder="Cari sesuatu di sini...">
+                <input type="text" placeholder="Cari sesuatu...">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <main class="container">
-        
         <div class="custom-slider-container">
-            
-            <div class="introduce">
-                </div>
-
+            <div class="introduce"></div>
             <div class="content">
-                <div class="thumbnail-list">
-                    <div class="wrapper" id="thumbnailWrapper">
-                        </div>
-                </div>
-                
+                <div class="thumbnail-list" id="thumbnailWrapper"></div>
                 <div class="navigation">
-                    <button class="next-button" id="nextButton">NEXT</button>
+                    <div class="nav-btns">
+                        <button id="prevBtn">PREV</button>
+                        <button id="nextBtn">NEXT</button>
+                    </div>
                     <span class="line"></span>
-                    <span class="ordinal-number" id="ordinalNumber">
-                        </span>
+                    <span class="ordinal-number" id="ordinalNumber"></span>
                 </div>
             </div>
-
         </div>
 
         <section class="promo-banner">
-            <img src="123.jpeg" alt="Banner Gabungan Tiga Foto">
+            <img src="1_2_3.jpeg" alt="Banner">
         </section>
 
         <section class="pengurus-section">
             <h2>PENGURUS KELAS</h2>
-            
             <div class="pengurus-grid">
-                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Foto Wali Kelas">
-                    </div>
-                    <div class="card-info">
-                        <h3>Agoes Risdianto, S.Pd</h3>
-                        <p>Wali Kelas</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Wali Kelas"></div>
+                    <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>Wali Kelas</p></div>
                 </div>
-                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="yehud.jpg" alt="Foto Yehuda">
-                    </div>
-                    <div class="card-info">
-                        <h3>Yehuda Driyo Raharjo</h3>
-                        <p>Ketua Kelas</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Yehuda.jpg" alt="Yehuda"></div>
+                    <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>Ketua Kelas</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="flooo.jpg" alt="Foto Florencia">
-                    </div>
-                    <div class="card-info">
-                        <h3>Florencia Flora Rosari</h3>
-                        <p>Wakil Ketua Murid</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Flo.jpg" alt="Flo"></div>
+                    <div class="card-info"><h3>Florencia Flora Rosari</h3><p>Wakil Ketua Murid</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="kiki.jpg" alt="Foto Rizqullah">
-                    </div>
-                    <div class="card-info">
-                        <h3>Rizqullah Nandhis Pratama</h3>
-                        <p>Sekretaris 1</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Rizky.jpg" alt="Rizky"></div>
+                    <div class="card-info"><h3>Rizqullah Nandhis Pratama</h3><p>Sekretaris 1</p></div>
                 </div>
-                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="rrenaaa.jpg" alt="Foto Renata">
-                    </div>
-                    <div class="card-info">
-                        <h3>Renata Amanda Wiguna Daminto</h3>
-                        <p>Sekretaris 2</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Renata.jpg" alt="Renata"></div>
+                    <div class="card-info"><h3>Renata Amanda Wiguna Daminto</h3><p>Sekretaris 2</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="elen.jpg" alt="Foto Veronica">
-                    </div>
-                    <div class="card-info">
-                        <h3>Veronica Anggelena Callista Makirangeng</h3>
-                        <p>Bendahara</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Ellen.jpg" alt="Ellen"></div>
+                    <div class="card-info"><h3>Veronica Anggelena Callista</h3><p>Bendahara</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="bko.jpg" alt="Foto Verbiko">
-                    </div>
-                    <div class="card-info">
-                        <h3>Verbiko Christian Sembiring</h3>
-                        <p>Tim IT 1</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Verbiko.jpg" alt="Verbiko"></div>
+                    <div class="card-info"><h3>Verbiko Christian Sembiring</h3><p>Tim IT 1</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="nopal.jpg" alt="Foto Noval">
-                    </div>
-                    <div class="card-info">
-                        <h3>Noval Cristian Marcelio</h3>
-                        <p>Tim IT 2</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Noval.jpg" alt="Noval"></div>
+                    <div class="card-info"><h3>Noval Cristian Marcelio</h3><p>Tim IT 2</p></div>
                 </div>
-                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="putri.jpg" alt="Foto Ananta">
-                    </div>
-                    <div class="card-info">
-                        <h3>Ananta Cahya Putri</h3>
-                        <p>Tim Perpustakaan 1</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Putri.jpg" alt="Putri"></div>
+                    <div class="card-info"><h3>Ananta Cahya Putri</h3><p>Tim Perpustakaan 1</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="kasiiii.jpg" alt="Foto Kasih">
-                    </div>
-                    <div class="card-info">
-                        <h3>Kasih Romaoli Simbolon </h3>
-                        <p>Tim Perpustakaan 2</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Kasih.jpg" alt="Kasih"></div>
+                    <div class="card-info"><h3>Kasih Romaoli Simbolon</h3><p>Tim Perpustakaan 2</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Foto Seksi UKS 1">
-                    </div>
-                    <div class="card-info">
-                        <h3>Ignatius Lionel Andres</h3>
-                        <p>Seksi UKS 1</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="UKS1"></div>
+                    <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>Seksi UKS 1</p></div>
                 </div>
-
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder">
-                        <img src="diaz..jpg" alt="Foto Ruth">
-                    </div>
-                    <div class="card-info">
-                        <h3>Ruth Avangeddiaz Jerica</h3>
-                        <p>Seksi UKS 2</p>
-                    </div>
+                    <div class="card-img-placeholder"><img src="Diaz.jpg" alt="Diaz"></div>
+                    <div class="card-info"><h3>Ruth Avangeddiaz Jerica</h3><p>Seksi UKS 2</p></div>
                 </div>
-
-                
             </div>
         </section>
-        
     </main>
     
-    
     <script>
-        // DATA SLIDE
         const data = [
-            {
-                img: "aib.jpg",
-                country: "KELAS IXB",
-                place: "HUT SEKOLAH ke 74 TH",
-                describe: "Momen perayaan hari jadi sekolah dengan tawa dan semangat yang tak terlupakan. IXB paling heboh!"
-            },
-            {
-                img: "Retret.jpg",
-                country: "KELAS IXB",
-                place: "RETRET",
-                describe: "Refleksi mendalam dan penguatan iman di Retret. Momen damai bersama teman-teman sekelas."
-            },
-            {
-                img: "lupa.jpg",
-                country: "KELAS IXB",
-                place: "LOMBA 17 AGUSTUS",
-                describe: "Tampil memukau dengan balutan busana daerah, menunjukkan kekayaan budaya Nusantara."
-            },
-            {
-                img: "bulan bahasa.jpg",
-                country: "KELAS IXB",
-                place: "BULAN BAHASA 2025",
-                describe: "Kekompakan kelas dalam balutan warna bumi, menunjukkan solidaritas yang kuat."
-            },
-            {
-                img: "lomab (2).jpg",
-                country: "KELAS IXB",
-                place: "Hut Sekolah",
-                describe: "Walau harus menjaga jarak, kebersamaan kami tetap erat dan kompak."
-            },
-            {
-                img: "lomab (1).jpg",
-                country: "KELAS IXB",
-                place: "LOMBA 17 AGUSTUS",
-                describe: "Tampil memukau dengan balutan busana daerah, menunjukkan kekayaan budaya Nusantara."
-            },
+            { img: "aib.jpg", place: "HUT SEKOLAH ke 74 TH", desc: "Momen perayaan hari jadi sekolah dengan tawa dan semangat yang tak terlupakan. IXB paling heboh!" },
+            { img: "Retret.jpg", place: "RETRET", desc: "Refleksi mendalam dan penguatan iman di Retret. Momen damai bersama teman-teman sekelas." },
+            { img: "lupa.jpg", place: "LOMBA 17 AGUSTUS", desc: "Tampil memukau dengan balutan busana daerah, menunjukkan kekayaan budaya Nusantara." },
+            { img: "bulan bahasa.jpg", place: "BULAN BAHASA 2025", desc: "Kekompakan kelas dalam balutan warna bumi, menunjukkan solidaritas yang kuat." },
+            { img: "WhatsApp Image 2025-10-30 at 18.23.07_ae01bd2d.jpg", place: "Hut Sekolah", desc: "Walau harus menjaga jarak, kebersamaan kami tetap erat dan kompak." },
+            { img: "WhatsApp Image 2025-10-30 at 18.23.07_5d981b79.jpg", place: "hut sekolah", desc: "Foto di depan ruang kelas! Kenangan yang tak akan terlupakan." }
         ];
         
         let currentIndex = 0;
-        const totalData = data.length;
-
-        // Mendapatkan Elemen Utama
         const introduce = document.querySelector(".introduce");
         const ordinalNumber = document.getElementById("ordinalNumber");
-        const thumbnailListWrapper = document.getElementById("thumbnailWrapper");
-        const nextBtn = document.getElementById("nextButton");
-        const THUMBNAIL_WIDTH = 150; 
-        const THUMBNAIL_MARGIN = 10; 
-        const THUMBNAIL_OFFSET = THUMBNAIL_WIDTH + THUMBNAIL_MARGIN;
+        const thumbnailWrapper = document.getElementById("thumbnailWrapper");
 
-
-        /**
-         * Fungsi untuk mengisi bagian kiri (Introduce) dan angka ordinal
-         */
-        function initIntroduce() {
+        function init() {
             introduce.innerHTML = "";
             ordinalNumber.innerHTML = "";
+            thumbnailWrapper.innerHTML = "";
             
             data.forEach((item, idx) => {
-                // PERBAIKAN: Gunakan div bukan span agar layout block berfungsi benar
-                const introHTML = `
-                    <div class="wrapper" id="intro-wrapper-${idx}">
-                        <div style="--idx: 0;" class="country">${item.country}</div>
-                        <div style="--idx: 1;" class="place"><h1>${item.place}</h1></div>
-                        <div style="--idx: 2;" class="describe"><p>${item.describe}</p></div>
-                        <div style="--idx: 3;"><button class="discover-button">LIHAT DETAIL</button></div>
+                // Teks di tengah (Kelas IXB cuma satu)
+                introduce.innerHTML += `
+                    <div class="wrapper" id="intro-${idx}">
+                        <span style="--idx: 0;" class="country">KELAS IXB</span>
+                        <span style="--idx: 1;" class="place"><h1>${item.place}</h1></span>
+                        <span style="--idx: 2;" class="describe"><p>${item.desc}</p></span>
+                        <span style="--idx: 3;"><button class="discover-button">LIHAT DETAIL</button></span>
                     </div>
                 `;
-                introduce.innerHTML += introHTML;
-                
-                ordinalNumber.innerHTML += `<h2 style="--idx: ${idx};">${(idx + 1).toString().padStart(2, '0')}</h2>`;
-            });
-            
-            // Aktifkan slide pertama
-            introduce.children[currentIndex].classList.add("active");
-            ordinalNumber.children[currentIndex].classList.add("active");
-        }
-
-        /**
-         * Fungsi untuk mengisi Thumbnail
-         */
-        function initThumbnail() {
-             thumbnailListWrapper.innerHTML = "";
-             
-             for (let i = 0; i < totalData; i++) {
-                const thumbnailHTML = `
-                    <div class="thumbnail" style="left: ${i * THUMBNAIL_OFFSET + 30}px;" data-index="${i}">
-                        <img src="${data[i].img}" alt="${data[i].place}">
+                // Gambar full screen
+                thumbnailWrapper.innerHTML += `
+                    <div class="thumbnail" id="thumb-${idx}">
+                        <img src="${item.img}" alt="${item.place}">
                     </div>
                 `;
-                thumbnailListWrapper.innerHTML += thumbnailHTML;
-            }
-
-            // Atur Thumbnail pertama sebagai yang utama (zoom)
-            const firstThumbnail = thumbnailListWrapper.querySelector(`.thumbnail[data-index="${currentIndex}"]`);
-            if (firstThumbnail) {
-                firstThumbnail.classList.add("zoom");
-            }
-        }
-        
-        /**
-         * Fungsi untuk melakukan animasi perpindahan slide
-         */
-        function nextSlide(targetIndex) {
-            
-            if (nextBtn.disabled) return;
-            nextBtn.disabled = true;
-
-            const prevIndex = currentIndex;
-            const newIndex = (typeof targetIndex === 'number') ? targetIndex : (currentIndex + 1) % totalData;
-
-            // 1. Animasi Thumbnail
-            const thumbnails = thumbnailListWrapper.querySelectorAll(".thumbnail");
-            const moveAmount = (newIndex - prevIndex) * THUMBNAIL_OFFSET;
-            
-            const currentThumb = thumbnailListWrapper.querySelector(`.thumbnail[data-index="${prevIndex}"]`);
-            if (currentThumb) {
-                currentThumb.classList.remove("zoom");
-            }
-            
-            thumbnails.forEach((thumb) => {
-                const currentLeft = parseInt(thumb.style.left);
-                thumb.style.left = `${currentLeft - moveAmount}px`; 
+                // Nomor
+                ordinalNumber.innerHTML += `<h2 id="num-${idx}">${(idx + 1).toString().padStart(2, '0')}</h2>`;
             });
-
-            // 2. Update Index
-            currentIndex = newIndex;
-
-            // 3. Animasi Teks
-            introduce.children[prevIndex].classList.remove("active");
-            ordinalNumber.children[prevIndex].classList.remove("active");
-            
-            setTimeout(() => {
-                introduce.children[currentIndex].classList.add("active");
-                ordinalNumber.children[currentIndex].classList.add("active");
-                
-                setTimeout(() => {
-                    const nextThumb = thumbnailListWrapper.querySelector(`.thumbnail[data-index="${currentIndex}"]`);
-                    if (nextThumb) {
-                        nextThumb.classList.add("zoom");
-                    }
-                    nextBtn.disabled = false;
-                }, 100); 
-                
-            }, 500); 
+            show(0);
         }
 
-        nextBtn.addEventListener("click", () => nextSlide());
+        function show(index) {
+            document.querySelectorAll(".wrapper").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".thumbnail").forEach(el => el.classList.remove("zoom"));
+            document.querySelectorAll(".ordinal-number h2").forEach(el => el.classList.remove("active"));
 
-        document.addEventListener('click', function(e) {
-            const thumbnail = e.target.closest('.thumbnail');
-            if (thumbnail) {
-                const targetIndex = parseInt(thumbnail.dataset.index);
-                if (targetIndex !== currentIndex) {
-                    nextSlide(targetIndex);
-                }
-            }
+            document.getElementById(`intro-${index}`).classList.add("active");
+            document.getElementById(`thumb-${index}`).classList.add("zoom");
+            document.getElementById(`num-${index}`).classList.add("active");
+            currentIndex = index;
+        }
+
+        document.getElementById("nextBtn").addEventListener("click", () => {
+            let next = (currentIndex + 1) % data.length;
+            show(next);
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            initIntroduce();
-            initThumbnail();
+        document.getElementById("prevBtn").addEventListener("click", () => {
+            let prev = (currentIndex - 1 + data.length) % data.length;
+            show(prev);
         });
 
+        document.addEventListener("DOMContentLoaded", init);
     </script>
-    </body>
+</body>
 </html>
