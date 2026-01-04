@@ -9,117 +9,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* PENGATURAN DASAR */
+        :root {
+            --bg-dark: #121212;
+            --card-bg: #1c1c1c;
+            --accent: #ffffff;
+            --text-dim: #aaaaaa;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Rubik', sans-serif;
             margin: 0; padding: 0;
-            background-color: #121212; color: #f0f0f0;
+            background-color: var(--bg-dark); color: #f0f0f0;
             overflow-x: hidden;
         }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER */
         header {
-            background-color: #1c1c1c; 
+            background-color: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid #333;
-            padding: 15px 0;
+            padding: 12px 0;
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .header-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
+        .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
+        .logo-name { font-weight: 700; font-size: 22px; }
 
-        .logo-area { display: flex; align-items: center; }
-        .logo-area .logo-img { 
-            height: 45px; width: 45px; object-fit: cover; 
-            border-radius: 50%; border: 2px solid #fff; margin-right: 12px; 
-        }
-        .logo-name { font-weight: bold; font-size: 22px; }
-
-        /* MENU NAVIGASI (PC) */
         .menu-wrapper { display: flex; align-items: center; gap: 30px; }
         nav ul { list-style: none; display: flex; margin: 0; padding: 0; gap: 20px; }
-        nav a { text-decoration: none; color: #aaa; transition: 0.3s; font-weight: 500; }
-        nav a:hover, nav a.active { color: #fff; }
+        nav a { text-decoration: none; color: var(--text-dim); transition: 0.3s; font-size: 14px; text-transform: uppercase; font-weight: 500; }
+        nav a:hover { color: var(--accent); }
 
-        /* SEARCH BAR MEMBULAT */
         .search-bar { 
-            display: flex; background: #2b2b2b; 
-            border-radius: 25px; padding: 5px 15px; border: 1px solid #444;
-            align-items: center;
+            display: flex; background: #2b2b2b; border-radius: 30px; padding: 4px 15px; border: 1px solid #444; align-items: center;
         }
-        .search-bar input {
-            background: transparent; border: none; color: #fff; outline: none; width: 180px; padding: 8px;
-        }
-        .search-bar button { background: transparent; border: none; color: #aaa; cursor: pointer; }
+        .search-bar input { background: transparent; border: none; color: #fff; outline: none; width: 160px; padding: 8px; }
+        .search-bar button { background: transparent; border: none; color: var(--text-dim); cursor: pointer; }
 
-        /* HAMBURGER (HP ONLY) */
-        .hamburger { display: none; font-size: 24px; cursor: pointer; color: #fff; }
+        .hamburger { display: none; font-size: 24px; cursor: pointer; color: var(--accent); }
 
-        /* SLIDER STYLES */
+        /* SLIDER SECTION */
         .custom-slider-container {
-            position: relative; width: 100%; height: 550px; 
-            border-radius: 15px; overflow: hidden; margin-top: 20px; margin-bottom: 40px;
+            position: relative; width: 100%; height: 500px; 
+            border-radius: 20px; overflow: hidden; margin-top: 25px; margin-bottom: 50px;
         }
         .introduce {
             position: absolute; width: 100%; height: 100%; z-index: 30;
             display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none;
         }
-        .introduce .wrapper { position: absolute; width: 85%; opacity: 0; transition: 0.8s; }
+        .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
         .introduce .wrapper.active { opacity: 1; pointer-events: all; }
-        .introduce .place h1 { font-family: 'Bebas Neue'; font-size: 4.5rem; margin: 10px 0; text-shadow: 2px 2px 15px #000; }
+        .introduce h1 { font-family: 'Bebas Neue'; font-size: 4rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
+        .introduce p { font-size: 1rem; margin-top: 10px; }
 
-        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; z-index: 10; }
-        .thumbnail.zoom { opacity: 1; z-index: 20; }
+        .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
+        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; }
+        .thumbnail.zoom { opacity: 1; }
         .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
 
-        .navigation { position: absolute; bottom: 30px; right: 50px; display: flex; align-items: center; z-index: 40; }
-        .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 20px; padding: 8px 25px; cursor: pointer; margin: 0 5px; transition: 0.3s; font-weight: bold; }
-        .nav-controls button:hover { background: #fff; color: #000; }
+        .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
+        .nav-controls button { 
+            background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; 
+            border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; 
+        }
 
-        /* PENGURUS KELAS - UKURAN LEBIH KECIL */
-        .pengurus-section { padding: 40px 0; }
-        .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .pengurus-card { background: #1c1c1c; border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .pengurus-card:hover { transform: translateY(-5px); border-color: #666; }
-        .card-img-placeholder { height: 230px; overflow: hidden; }
-        .card-img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-        .card-info { padding: 15px 10px; text-align: center; }
-        .card-info h3 { font-size: 14px; margin: 0 0 5px; color: #fff; }
-        .card-info p { font-size: 12px; color: #aaa; margin: 0; }
-        #no-results { display: none; text-align: center; padding: 20px; color: #aaa; font-style: italic; }
+        /* STRUKTUR PENGURUS */
+        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
+        .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; }
+        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .card-img { height: 220px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .card-info { padding: 15px; text-align: center; }
+        .card-info h3 { font-size: 14px; margin: 0; color: #fff; }
+        .card-info p { font-size: 11px; color: var(--text-dim); margin: 5px 0 0; }
 
-        /* RESPONSIVE: MODE HP */
+        /* DAFTAR MURID */
+        .murid-container {
+            background: var(--card-bg); border-radius: 0 0 40px 40px; 
+            padding: 40px; margin-bottom: 50px; border: 1px solid #333;
+        }
+        .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .murid-item {
+            display: flex; align-items: center; background: #252525;
+            padding: 12px 20px; border-radius: 15px; border: 1px solid #333;
+        }
+        .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
+        .murid-nama { font-size: 13px; color: #eee; text-transform: uppercase; }
+
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .menu-wrapper {
-                position: fixed; top: 75px; right: -100%; background: #1c1c1c;
-                width: 280px; height: calc(100vh - 75px); flex-direction: column;
-                padding: 40px 20px; gap: 30px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                border-left: 1px solid #333; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                position: fixed; top: 0; right: -100%; background: #1a1a1a;
+                width: 75%; height: 100vh; flex-direction: column;
+                padding: 100px 30px; gap: 30px; transition: 0.4s; z-index: 999;
             }
             .menu-wrapper.active { right: 0; }
-            nav ul { flex-direction: column; width: 100%; gap: 20px; }
-            nav li { width: 100%; border-bottom: 1px solid #333; padding-bottom: 10px; }
+            nav ul { flex-direction: column; width: 100%; }
             .search-bar { width: 100%; }
-            .search-bar input { width: 100%; }
-            .custom-slider-container { height: 400px; }
-            .introduce .place h1 { font-size: 2.5rem; }
+            .introduce h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
-<body>
+<body id="home-top">
 
     <header>
         <div class="container header-container">
-            <div class="logo-area">
-                <img src="logo.jpg" alt="Logo" class="logo-img">
-                <span class="logo-name">ixbnueve</span>
-            </div>
+            <a href="#home-top" class="logo-area">
+                <img src="logo.jpg" alt="Logo">
+                <span class="logo-name">IXBNUEVE</span>
+            </a>
 
             <div class="hamburger" id="hamburgerBtn">
                 <i class="fas fa-bars"></i>
@@ -128,9 +132,9 @@
             <div class="menu-wrapper" id="menuWrapper">
                 <nav>
                     <ul>
-                        <li><a href="#" class="active">Home</a></li>
-                        <li><a href="#">Daftar Murid</a></li>
-                        <li><a href="#">Daftar Pengurus</a></li>
+                        <li><a href="#home-top">Home</a></li>
+                        <li><a href="#daftar-murid">Daftar Murid</a></li>
+                        <li><a href="#struktur-kelas">Daftar Pengurus</a></li>
                     </ul>
                 </nav>
                 <div class="search-bar">
@@ -143,151 +147,153 @@
 
     <main class="container">
         <div class="custom-slider-container">
-            <div class="introduce"></div>
-            <div class="content">
-                <div class="thumbnail-list" id="thumbnailWrapper"></div>
-                <div class="navigation">
-                    <div class="nav-controls">
-                        <button id="prevBtn">BACK</button>
-                        <button id="nextBtn">NEXT</button>
-                    </div>
-                    <span id="ordinalNumber" style="margin-left: 15px; font-weight: bold; font-family: 'Bebas Neue'; font-size: 1.5rem;"></span>
+            <div class="introduce" id="introCont"></div>
+            <div class="thumbnail-list" id="thumbCont"></div>
+            <div class="navigation">
+                <div class="nav-controls">
+                    <button id="prevBtn">PREV</button>
+                    <button id="nextBtn">NEXT</button>
                 </div>
             </div>
         </div>
 
-        <section class="promo-banner" style="margin-bottom: 40px;">
-            <img src="1_2_3.jpeg" alt="Banner" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <section style="margin-bottom: 50px;">
+            <img src="1_2_3.jpeg" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
         </section>
 
-        <section class="pengurus-section">
-            <h2 style="border-left: 4px solid #fff; padding-left: 15px; margin-bottom: 30px;">PENGURUS KELAS</h2>
-            
-            <div id="no-results">Nama pengurus tidak ditemukan...</div>
-            
+        <section id="struktur-kelas">
+            <h2 class="section-title">STRUKTUR PENGURUS KELAS</h2>
+            <div id="no-results" style="display:none; text-align:center; padding:20px; color:gray;">Nama tidak ditemukan...</div>
             <div class="pengurus-grid" id="pengurusGrid">
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg"></div>
+                    <div class="card-img"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg"></div>
                     <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>Wali Kelas</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="yehud.jpg"></div>
+                    <div class="card-img"><img src="Yehuda.jpg"></div>
                     <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>Ketua Kelas</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="flooo.jpg"></div>
+                    <div class="card-img"><img src="Flo.jpg"></div>
                     <div class="card-info"><h3>Florencia Flora Rosari</h3><p>Wakil Ketua Murid</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="Rizky.jpg"></div>
                     <div class="card-info"><h3>Rizqullah Nandhis Pratama</h3><p>Sekretaris 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="rrenaaa.jpg"></div>
+                    <div class="card-img"><img src="Renata.jpg"></div>
                     <div class="card-info"><h3>Renata Amanda Wiguna Daminto</h3><p>Sekretaris 2</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="elen.jpg"></div>
+                    <div class="card-img"><img src="Ellen.jpg"></div>
                     <div class="card-info"><h3>Veronica Anggelena Callista Makirangeng</h3><p>Bendahara</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="bko.jpg"></div>
+                    <div class="card-img"><img src="Verbiko.jpg"></div>
                     <div class="card-info"><h3>Verbiko Christian Sembiring</h3><p>Tim IT 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="nopal.jpg"></div>
+                    <div class="card-img"><img src="Noval.jpg"></div>
                     <div class="card-info"><h3>Noval Cristian Marcelio</h3><p>Tim IT 2</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="putri.jpg"></div>
+                    <div class="card-img"><img src="Putri.jpg"></div>
                     <div class="card-info"><h3>Ananta Cahya Putri</h3><p>Tim Perpustakaan 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="kasiiii.jpg"></div>
+                    <div class="card-img"><img src="Kasih.jpg"></div>
                     <div class="card-info"><h3>Kasih Romaoli Simbolon</h3><p>Tim Perpustakaan 2</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg"></div>
+                    <div class="card-img"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg"></div>
                     <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>Seksi UKS 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="diaz..jpg"></div>
+                    <div class="card-img"><img src="Diaz.jpg"></div>
                     <div class="card-info"><h3>Ruth Avangeddiaz Jerica</h3><p>Seksi UKS 2</p></div>
                 </div>
+            </div>
+        </section>
+
+        <section id="daftar-murid">
+            <h2 class="section-title">DAFTAR MURID IXB</h2>
+            <div class="murid-container">
+                <div class="murid-grid" id="muridList"></div>
             </div>
         </section>
     </main>
 
     <script>
-        // Data Slider (Hanya menyertakan yang memiliki file foto valid)
         const slideData = [
-            { img: "lomab (1).jpg", title: "HUT SEKOLAH ke 74", desc: "Momen perayaan penuh kegembiraan keluarga besar IXB." },
-            { img: "Retret.jpg", title: "RETRET", desc: "Refleksi mendalam dan mempererat tali persaudaraan." },
-            { img: "lupa.jpg", title: "LOMBA 17 AGUSTUS", desc: "Semangat kemerdekaan dalam balutan pakaian adat." },
-            { img: "bulan bahasa.jpg", title: "BULAN BAHASA", desc: "Kreativitas dan kecintaan terhadap budaya Nusantara." }
+            { img: "aib.jpg", title: "HUT SEKOLAH 74", desc: "Momen perayaan hari jadi sekolah IXB." },
+            { img: "Retret.jpg", title: "RETRET KELAS", desc: "Refleksi mendalam dan kebersamaan damai." },
+            { img: "lupa.jpg", title: "LOMBA 17 AGUSTUS", desc: "Semangat kemerdekaan dalam busana daerah." },
+            { img: "bulan bahasa.jpg", title: "BULAN BAHASA", desc: "Kekompakan kelas dalam kreativitas budaya." }
         ];
 
-        let currentIndex = 0;
-        const introduce = document.querySelector(".introduce");
-        const thumbnailWrapper = document.getElementById("thumbnailWrapper");
-        const ordinalNumber = document.getElementById("ordinalNumber");
+        let currentSlide = 0;
+        const introCont = document.getElementById('introCont');
+        const thumbCont = document.getElementById('thumbCont');
 
         function initSlider() {
-            slideData.forEach((item, idx) => {
-                introduce.innerHTML += `
-                    <div class="wrapper" id="intro-${idx}">
-                        <span style="letter-spacing:2px; font-size: 0.9rem;">KELAS IXB</span>
-                        <div class="place"><h1>${item.title}</h1></div>
-                        <div class="describe"><p>${item.desc}</p></div>
-                    </div>`;
-                thumbnailWrapper.innerHTML += `
-                    <div class="thumbnail" id="thumb-${idx}">
-                        <img src="${item.img}">
-                    </div>`;
+            slideData.forEach((s, i) => {
+                introCont.innerHTML += `<div class="wrapper" id="i-${i}"><h1>${s.title}</h1><p>${s.desc}</p></div>`;
+                thumbCont.innerHTML += `<div class="thumbnail" id="t-${i}"><img src="${s.img}"></div>`;
             });
             showSlide(0);
         }
 
-        function showSlide(index) {
-            document.querySelectorAll(".wrapper").forEach(el => el.classList.remove("active"));
-            document.querySelectorAll(".thumbnail").forEach(el => el.classList.remove("zoom"));
-            document.getElementById(`intro-${index}`).classList.add("active");
-            document.getElementById(`thumb-${index}`).classList.add("zoom");
-            ordinalNumber.innerText = `${index + 1} / ${slideData.length}`;
-            currentIndex = index;
+        function showSlide(idx) {
+            document.querySelectorAll('.wrapper, .thumbnail').forEach(el => el.classList.remove('active', 'zoom'));
+            document.getElementById(`i-${idx}`).classList.add('active');
+            document.getElementById(`t-${idx}`).classList.add('zoom');
+            currentSlide = idx;
         }
 
-        document.getElementById("nextBtn").addEventListener("click", () => showSlide((currentIndex + 1) % slideData.length));
-        document.getElementById("prevBtn").addEventListener("click", () => showSlide((currentIndex - 1 + slideData.length) % slideData.length));
+        document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
+        document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // Hamburger Menu Logic
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const menuWrapper = document.getElementById('menuWrapper');
+        const siswa = [
+            "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
+            "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
+            "CALLYSTA NATHANIA", "DWI OKTAVIA PUTRI KARLINA", "EL - JIREH JECONIA HERWANDHA",
+            "EVAN DANIEL FERNANDA", "FLORENCIA FLORA ROSARI", "GRACIA CLARITA MAHARANI",
+            "IGNATIUS HEBERT DEVIN LARO", "IGNATIUS LIONEL ANDRES", "IVANA DWI PUTRI",
+            "IVANDER DHAMMA SOEDIANTO", "JUAN CARLOS IMMANUEL GULO", "KASIH ROMAOLI SIMBOLON",
+            "KEISHA JOSEPHINE ANGELINA WIYONO", "LAURENTIA FINOLLA HERFANSHA", "MARCELLO REYNARD CAESARIO",
+            "NOVAL CRISTIAN MARCELIO", 
+            "OLIVIA YOHANA PUTRI", // No 23
+            "REIKO EMMANUEL INDRAWANA", "RENATA AMANDA WIGUNA DAMINTO", "RIZQULLAH NANDHIS PRATAMA",
+            "RUTH AVANGEDDIAZ JERICA", "SKOLASTIKA NESHA NIRWASITA", "VERBIKO CHRISTIAN SEMBIRING",
+            "VERONICA ANGGELENA CALLISTA MAKIRANGENG", "YECHONIA YUDRA RAJANI BEE", "YEHUDA DRIYO RAHARJO"
+        ];
 
-        hamburgerBtn.addEventListener('click', () => {
-            menuWrapper.classList.toggle('active');
-            hamburgerBtn.querySelector('i').classList.toggle('fa-bars');
-            hamburgerBtn.querySelector('i').classList.toggle('fa-times');
+        const muridGrid = document.getElementById('muridList');
+        siswa.forEach((n, i) => {
+            muridGrid.innerHTML += `<div class="murid-item"><div class="murid-no">${i+1}</div><div class="murid-nama">${n}</div></div>`;
         });
 
-        // Search Function
+        const btn = document.getElementById('hamburgerBtn');
+        const menu = document.getElementById('menuWrapper');
+        btn.onclick = () => {
+            menu.classList.toggle('active');
+            btn.innerHTML = menu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        };
+
         function searchPengurus() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('pengurus-card');
+            let val = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('pengurus-card');
             let found = false;
-            for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].querySelector('h3').innerText.toLowerCase();
-                if (name.includes(input)) {
-                    cards[i].style.display = "";
-                    found = true;
-                } else {
-                    cards[i].style.display = "none";
-                }
+            for (let item of items) {
+                let name = item.querySelector('h3').innerText.toLowerCase();
+                if (name.includes(val)) { item.style.display = ""; found = true; } 
+                else { item.style.display = "none"; }
             }
             document.getElementById('no-results').style.display = found ? "none" : "block";
         }
 
-        document.addEventListener("DOMContentLoaded", initSlider);
+        window.onload = initSlider;
     </script>
 </body>
 </html>
