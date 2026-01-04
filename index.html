@@ -20,17 +20,18 @@
         body { font-family: 'Rubik', sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: #f0f0f0; overflow-x: hidden; }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER & NAVIGATION */
+        /* HEADER */
         header { background-color: rgba(28, 28, 28, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #333; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; }
         .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
+        /* NAV PC */
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; }
         
-        /* SEARCH BAR PC */
-        .search-wrapper { position: relative; margin-left: 10px; }
+        /* SEARCH WRAPPER */
+        .search-wrapper { position: relative; }
         .search-input {
             background: #252525;
             border: 1px solid #444;
@@ -38,13 +39,11 @@
             padding: 8px 15px 8px 35px;
             border-radius: 25px;
             font-size: 13px;
-            width: 180px;
-            transition: 0.4s;
             outline: none;
+            transition: 0.3s;
         }
-        .search-input:focus { width: 250px; border-color: white; }
-        .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 14px; }
 
+        /* TOMBOL MENU HP */
         .menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
 
         /* SLIDER (FOTO BIAR GK KEPOTONG) */
@@ -57,18 +56,16 @@
         .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
         .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; display: flex; align-items: center; justify-content: center; }
         .thumbnail.zoom { opacity: 1; }
-        
-        /* Menggunakan contain supaya gambar masuk semua */
         .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
 
         .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
         .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
         /* BANNER */
-        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; display: block; text-align: center; }
+        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; }
         .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; }
 
-        /* PENGURUS & MURID */
+        /* GRID SYSTEM */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
         .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
@@ -91,22 +88,37 @@
         .info-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; display: block; margin-top: 10px; }
         .info-value { font-weight: bold; font-size: 15px; color: #fff; display: block; border-bottom: 1px solid #333; padding-bottom: 5px; }
 
-        /* MOBILE RESPONSIVE UPDATED */
+        /* HP SPECIFIC STYLES */
         @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 67px; left: 0; width: 100%; background: #1c1c1c; padding: 20px; gap: 15px; border-bottom: 1px solid #333; }
+            header { padding: 8px 0; }
+            .nav-links { 
+                display: none; flex-direction: column; position: absolute; 
+                top: 100%; left: 0; width: 100%; background: #1c1c1c; 
+                padding: 20px; gap: 15px; border-bottom: 2px solid #333;
+            }
             .nav-links.active { display: flex; }
-            .menu-btn { display: block; }
+            .menu-btn { display: block; order: 3; }
             
-            /* Slider Diperkecil di HP */
-            .custom-slider-container { height: 200px; margin-top: 10px; }
-            .thumbnail img { object-fit: contain; filter: brightness(60%); } /* Agar foto utuh masuk */
-            .introduce h1 { font-size: 1.2rem; }
-            .navigation { bottom: 10px; right: 10px; }
-            .nav-controls button { padding: 5px 15px; font-size: 10px; }
+            /* Search khusus HP di bawah header */
+            .search-wrapper { order: 2; width: 60%; margin-left: auto; margin-right: 15px; }
+            .search-input { width: 100% !important; font-size: 12px; padding: 6px 10px 6px 30px; }
+            .search-wrapper i { left: 10px; font-size: 12px; }
 
-            .search-wrapper { margin-left: 0; width: 100%; }
-            .search-input { width: 100% !important; box-sizing: border-box; }
-            .main-banner img { max-height: 200px; }
+            /* Slider HP diperkecil & utuh */
+            .custom-slider-container { height: 180px; margin-top: 15px; }
+            .thumbnail img { object-fit: contain; filter: brightness(60%); }
+            .introduce h1 { font-size: 1rem; }
+            .navigation { bottom: 5px; right: 10px; }
+            .nav-controls button { padding: 4px 12px; font-size: 9px; }
+
+            .main-banner img { max-height: 180px; }
+        }
+
+        /* DESKTOP SEARCH */
+        @media (min-width: 769px) {
+            .search-input { width: 180px; }
+            .search-input:focus { width: 250px; border-color: white; }
+            .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
         }
     </style>
 </head>
@@ -119,16 +131,17 @@
                 <span class="logo-name">IXBNUEVE</span>
             </a>
             
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="mainSearch" class="search-input" placeholder="Cari teman...">
+            </div>
+
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
             
             <nav class="nav-links" id="navLinks">
-                <a href="#"><i class="fas fa-home"></i> HOME</a>
-                <a href="#pengurus-sec" onclick="toggleMenu()"><i class="fas fa-users"></i> PENGURUS</a>
-                <a href="#daftar-murid" onclick="toggleMenu()"><i class="fas fa-list"></i> MURID</a>
-                <div class="search-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="mainSearch" class="search-input" placeholder="Cari nama...">
-                </div>
+                <a href="#">HOME</a>
+                <a href="#pengurus-sec" onclick="toggleMenu()">PENGURUS</a>
+                <a href="#daftar-murid" onclick="toggleMenu()">MURID</a>
             </nav>
         </div>
     </header>
@@ -142,7 +155,7 @@
             </div>
         </div>
 
-        <div class="main-banner"><img src="123.jpeg" alt="Banner IX B"></div>
+        <div class="main-banner"><img src="123.jpeg" alt="Banner"></div>
 
         <section id="pengurus-sec">
             <h2 class="section-title">STRUKTUR PENGURUS</h2>
@@ -250,7 +263,6 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // Data Murid (Pastikan data ini sudah lengkap di file Anda)
         const dataSiswa = [
             { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
             { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
@@ -302,11 +314,19 @@
             ml.appendChild(item);
         });
 
-        // Search Logic
+        // SEARCH LOGIC (MURID & PENGURUS)
         document.getElementById('mainSearch').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase();
+            
+            // Filter Murid
             document.querySelectorAll('.murid-item').forEach(el => {
                 el.style.display = el.getAttribute('data-nama').includes(term) ? 'flex' : 'none';
+            });
+
+            // Filter Pengurus
+            document.querySelectorAll('.pengurus-card').forEach(el => {
+                const nama = el.getAttribute('data-nama').toLowerCase();
+                el.style.display = nama.includes(term) ? 'block' : 'none';
             });
         });
 
