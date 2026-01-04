@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ixbnueve - Website Kelas</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        /* PENGATURAN DASAR DAN TEMA GELAP (TIDAK DIUBAH) */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; 
+            color: #f0f0f0;
+            overflow-x: hidden; /* Mencegah scroll horizontal saat slider aktif */
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* BAGIAN HEADER (TIDAK DIUBAH) */
+        header {
+            background-color: #1c1c1c; 
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: grid;
+            grid-template-columns: auto 1fr auto; 
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area .logo-img { 
+            height: 50px; 
+            width: 50px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 3px solid #f0f0f0; 
+            margin-right: 15px; 
+        }
+
+        .logo-area .logo-name {
+            color: #fff;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center; 
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 20px; 
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #aaa; 
+            font-weight: bold;
+            padding: 10px 0;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff; 
+            border-bottom: 2px solid #fff;
+        }
+
+        .search-bar {
+            display: flex;
+        }
+
+        .search-bar input {
+            background-color: #2b2b2b; 
+            border: 1px solid #444;
+            border-radius: 5px 0 0 5px;
+            padding: 10px;
+            color: #fff;
+            width: 250px;
+            font-size: 14px;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        .search-bar button {
+            background-color: #2b2b2b; 
+            border: 1px solid #444;
+            border-left: none;
+            border-radius: 0 5px 5px 0;
+            padding: 10px 15px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        /* BAGIAN MAIN CONTENT (UTAMA) */
+        main {
+            padding-top: 30px; 
+            padding-bottom: 50px;
+        }
+        
+        /* ========================================= */
+        /* GAYA SLIDE BARU: TIKTOK STYLE VIDEO 2 (Disatukan) */
+        /* ========================================= */
+        
+        /* Container Slider yang disesuaikan dengan lebar kontainer web Anda */
+        .custom-slider-container {
+            position: relative;
+            width: 100%; 
+            height: 600px; /* Tinggi slider */
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #1c1c1c; 
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+        }
+
+        /* Bagian KIRI: Konten Informasi */
+        .custom-slider-container .introduce {
+            width: 45%; /* Diubah agar lebih proporsional di container yang lebih kecil */
+            height: 100%;
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-left: 30px; 
+        }
+        
+        .introduce .wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0 20px 50px 30px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Gaya Transisi Teks */
+        .introduce .wrapper span * {
+            opacity: 0;
+            transform: translateY(100px); /* Diubah lebih kecil */
+            transition: 0.5s ease;
+            pointer-events: none;
+            transition-delay: calc(var(--idx) * 0.08s); /* Delay dikurangi */
+        }
+        
+        .introduce .wrapper.active span * {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+            transition-delay: calc(var(--idx) * 0.1s);
+        }
+
+        .introduce .country {
+            font-size: 1.2rem; /* Ukuran disesuaikan */
+            font-weight: 400;
+            margin-bottom: 0px;
+        }
+
+        .introduce .place {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem; /* Ukuran disesuaikan */
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .introduce .describe {
+            font-size: 0.9rem; /* Ukuran disesuaikan */
+            margin-top: 8px;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+        
+        .introduce .discover-button {
+            font-family: 'Rubik', sans-serif;
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 20px;
+            padding: 8px 20px;
+            margin-top: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            pointer-events: all;
+            width: 130px;
+            text-align: center;
+        }
+        
+        .introduce .discover-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Bagian KANAN: Thumbnail dan Gambar */
+        .custom-slider-container .content {
+            width: 55%; /* Diubah agar proporsional */
+            height: 100%;
+            position: relative;
+        }
+
+        /* List Thumbnail */
+        .thumbnail-list {
+            position: relative;
+            height: 100%; /* Dibuat penuh */
+            z-index: 10;
+        }
+        
+        .thumbnail-list .wrapper {
+            position: relative;
+            height: 100%;
+            z-index: 10;
+            display: flex;
+        }
+
+        .thumbnail {
+            position: absolute;
+            top: 50%; /* Posisikan di tengah vertikal */
+            transform: translateY(-50%);
+            width: 150px; /* Ukuran thumbnail disesuaikan */
+            height: 250px;
+            border-radius: 10px; /* Radius disesuaikan */
+            overflow: hidden;
+            transition: 0.75s cubic-bezier(0.6, 0.1, 0.3, 1);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            /* KUNCI: Pastikan gambar utama terlihat Penuh (cover) */
+            object-fit: cover; 
+            transition: 0.75s ease;
+        }
+        
+        /* Thumbnail Utama (Paling Depan) */
+        .thumbnail.zoom {
+            height: 100%; /* Penuh tinggi container */
+            width: 100%; /* Penuh lebar container */
+            /* KUNCI UTAMA: Nilai translate dihitung ulang agar menutupi seluruh area KANAN */
+            transform: translate(-450px, -50%); 
+            filter: brightness(100%);
+            box-shadow: none;
+            transition: 1s cubic-bezier(0.6, 0.1, 0.3, 1);
+            z-index: 5; /* Pastikan di bawah navigation */
+        }
+
+        /* Gambar di dalam Thumbnail Utama */
+        .thumbnail.zoom img {
+            filter: brightness(40%); /* Gelapkan gambar utama agar teks terbaca */
+        }
+        
+        /* Navigasi (Next Button & Nomor) */
+        .custom-slider-container .navigation {
+            position: absolute;
+            bottom: 30px; 
+            right: 30px; 
+            display: flex;
+            align-items: center;
+            z-index: 20; 
+        }
+        
+        .navigation .next-button {
+            font-family: 'Rubik', sans-serif;
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 50px;
+            width: 80px; /* Ukuran disesuaikan */
+            height: 40px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .navigation .next-button:hover:not(:disabled) {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .navigation .next-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .navigation .line {
+            width: 50px; /* Panjang disesuaikan */
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 50px;
+            margin-right: 15px;
+        }
+        
+        .navigation .ordinal-number {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .ordinal-number h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem; /* Ukuran disesuaikan */
+            font-weight: 400;
+            line-height: 1;
+            position: absolute;
+            transform: translateY(200%); 
+            transition: 0.5s ease;
+        }
+        
+        .ordinal-number h2.active {
+            transform: unset; 
+        }
+        
+        
+        /* ========================================= */
+        /* GAYA BAWAH SLIDE (TIDAK DIUBAH) */
+        /* ========================================= */
+
+        /* Gaya untuk Banner Gabungan */
+        .promo-banner {
+            margin-bottom: 40px; 
+        }
+
+        .promo-banner img {
+            width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            display: block; 
+        }
+
+        /* Bagian Pengurus Kelas */
+        .pengurus-section h2 {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .pengurus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .pengurus-card {
+            background-color: #1c1c1c; 
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card-img-placeholder {
+            background-color: #2b2b2b; 
+            height: 220px; 
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        .card-info {
+            padding: 20px 10px;
+            text-align: center; 
+        }
+
+        .card-info h3 {
+            color: #fff;
+            margin: 0 0 5px 0;
+            font-size: 16px; 
+        }
+
+        .card-info p {
+            color: #aaa;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        
+        /* MEDIA QUERIES UNTUK RESPONSIVITAS */
+
+        @media (max-width: 768px) {
+            .header-container {
+                grid-template-columns: 1fr; 
+                justify-items: center;
+                gap: 20px;
+            }
+            /* Kontainer Slider */
+            .custom-slider-container {
+                flex-direction: column;
+                height: 400px;
+            }
+            /* Konten Informasi di mobile */
+            .custom-slider-container .introduce {
+                width: 100%;
+                height: 30%;
+                padding: 0 10px;
+                justify-content: center;
+            }
+            .introduce .wrapper {
+                position: relative;
+                padding: 10px 10px;
+                height: auto
+            }
+            .introduce .country { font-size: 1rem; }
+            .introduce .place { font-size: 2rem; }
+            .introduce .describe { display: none; } /* Deskripsi dihilangkan di mobile */
+            .introduce .discover-button { margin-top: 5px; width: 100px; padding: 5px 10px;}
+            
+            /* Konten Gambar di mobile */
+            .custom-slider-container .content {
+                width: 100%;
+                height: 70%;
+            }
+            .thumbnail {
+                display: none; /* Hilangkan thumbnail kecil di mobile */
+            }
+            .thumbnail.zoom {
+                width: 100%;
+                height: 100%;
+                /* Kunci untuk mobile: Hanya fokus pada gambar utama */
+                transform: translate(0, -50%); 
+            }
+            .custom-slider-container .navigation {
+                bottom: 10px;
+                right: 10px;
+            }
+            .navigation .line { width: 30px; }
+            .navigation .next-button { width: 60px; height: 30px; font-size: 10px;}
+        }
+        
+    </style>
+    </head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="logo.jpg" alt="Logo Kelas ixbnueve" class="logo-img">
+                <span class="logo-name">ixbnueve</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Daftar Murid</a></li>
+                    <li><a href="#">Daftar Pengurus</a></li>
+                </ul>
+            </nav>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Cari sesuatu di sini...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        
+        <div class="custom-slider-container">
+            
+            <div class="introduce">
+                </div>
+
+            <div class="content">
+                <div class="thumbnail-list">
+                    <div class="wrapper" id="thumbnailWrapper">
+                        </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="next-button" id="nextButton">NEXT</button>
+                    <span class="line"></span>
+                    <span class="ordinal-number" id="ordinalNumber">
+                        </span>
+                </div>
+            </div>
+
+        </div>
+        <section class="promo-banner">
+            <img src="1_2_3.jpeg" alt="Banner Gabungan Tiga Foto">
+        </section>
+
+        <section class="pengurus-section">
+            <h2>PENGURUS KELAS</h2>
+            
+            
+            <div class="pengurus-grid">
+                
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Foto Wali Kelas">
+                    </div>
+                    <div class="card-info">
+                        <h3>Agoes Risdianto, S.Pd</h3>
+                        <p>Wali Kelas</p>
+                    </div>
+                </div>
+                
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Yehuda.jpg" alt="Foto Yehuda">
+                    </div>
+                    <div class="card-info">
+                        <h3>Yehuda Driyo Raharjo</h3>
+                        <p>Ketua Kelas</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Flo.jpg" alt="Foto Florencia">
+                    </div>
+                    <div class="card-info">
+                        <h3>Florencia Flora Rosari</h3>
+                        <p>Wakil Ketua Murid</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Rizky.jpg" alt="Foto Rizqullah">
+                    </div>
+                    <div class="card-info">
+                        <h3>Rizqullah Nandhis Pratama</h3>
+                        <p>Sekretaris 1</p>
+                    </div>
+                </div>
+                
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Renata.jpg" alt="Foto Renata">
+                    </div>
+                    <div class="card-info">
+                        <h3>Renata Amanda Wiguna Daminto</h3>
+                        <p>Sekretaris 2</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Ellen.jpg" alt="Foto Veronica">
+                    </div>
+                    <div class="card-info">
+                        <h3>Veronica Anggelena Callista Makirangeng</h3>
+                        <p>Bendahara</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Verbiko.jpg" alt="Foto Verbiko">
+                    </div>
+                    <div class="card-info">
+                        <h3>Verbiko Christian Sembiring</h3>
+                        <p>Tim IT 1</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Noval.jpg" alt="Foto Noval">
+                    </div>
+                    <div class="card-info">
+                        <h3>Noval Cristian Marcelio</h3>
+                        <p>Tim IT 2</p>
+                    </div>
+                </div>
+                
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Putri.jpg" alt="Foto Ananta">
+                    </div>
+                    <div class="card-info">
+                        <h3>Ananta Cahya Putri</h3>
+                        <p>Tim Perpustakaan 1</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Kasih.jpg" alt="Foto Kasih">
+                    </div>
+                    <div class="card-info">
+                        <h3>Kasih Romaoli Simbolon </h3>
+                        <p>Tim Perpustakaan 2</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Foto Seksi UKS 1">
+                    </div>
+                    <div class="card-info">
+                        <h3>Ignatius Lionel Andres</h3>
+                        <p>Seksi UKS 1</p>
+                    </div>
+                </div>
+
+                <div class="pengurus-card">
+                    <div class="card-img-placeholder">
+                        <img src="Diaz.jpg" alt="Foto Ruth">
+                    </div>
+                    <div class="card-info">
+                        <h3>Ruth Avangeddiaz Jerica</h3>
+                        <p>Seksi UKS 2</p>
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    
+    <script>
+        // DATA SLIDE Anda (Disesuaikan dengan file gambar Anda)
+        const data = [
+            {
+                img: "aib.jpg",
+                country: "KELAS IXB",
+                place: "HUT SEKOLAH ke 74 TH",
+                describe: "Momen perayaan hari jadi sekolah dengan tawa dan semangat yang tak terlupakan. IXB paling heboh!"
+            },
+            {
+                img: "Retret.jpg",
+                country: "KELAS IXB",
+                place: "RETRET",
+                describe: "Refleksi mendalam dan penguatan iman di Retret. Momen damai bersama teman-teman sekelas."
+            },
+            {
+                img: "lupa.jpg",
+                country: "KELAS IXB",
+                place: "LOMBA 17 AGUSTUS",
+                describe: "Tampil memukau dengan balutan busana daerah, menunjukkan kekayaan budaya Nusantara."
+            },
+            {
+                img: "bulan bahasa.jpg",
+                country: "KELAS IXB",
+                place: "BULAN BAHASA 2025",
+                describe: "Kekompakan kelas dalam balutan warna bumi, menunjukkan solidaritas yang kuat."
+            },
+            {
+                img: "WhatsApp Image 2025-10-30 at 18.23.07_ae01bd2d.jpg",
+                country: "KELAS IXB",
+                place: "Hut Sekolah",
+                describe: "Walau harus menjaga jarak, kebersamaan kami tetap erat dan kompak."
+            },
+            {
+                img: "WhatsApp Image 2025-10-30 at 18.23.07_5d981b79.jpg",
+                country: "KELAS IXB",
+                place: "hut sekolah",
+                describe: "Foto di depan ruang kelas! Kenangan yang tak akan terlupakan."
+            },
+        ];
+        
+        let currentIndex = 0;
+        const totalData = data.length;
+
+        // Mendapatkan Elemen Utama
+        const introduce = document.querySelector(".introduce");
+        const ordinalNumber = document.getElementById("ordinalNumber");
+        const thumbnailListWrapper = document.getElementById("thumbnailWrapper");
+        const nextBtn = document.getElementById("nextButton");
+        const THUMBNAIL_WIDTH = 150; // Lebar thumbnail (sama dengan CSS)
+        const THUMBNAIL_MARGIN = 10; // Jarak antar thumbnail yang diasumsikan
+        const THUMBNAIL_OFFSET = THUMBNAIL_WIDTH + THUMBNAIL_MARGIN;
+
+
+        /**
+         * Fungsi untuk mengisi bagian kiri (Introduce) dan angka ordinal
+         */
+        function initIntroduce() {
+            introduce.innerHTML = "";
+            ordinalNumber.innerHTML = "";
+            
+            data.forEach((item, idx) => {
+                const introHTML = `
+                    <div class="wrapper" id="intro-wrapper-${idx}">
+                        <span style="--idx: 0;" class="country">${item.country}</span>
+                        <span style="--idx: 1;" class="place"><h1>${item.place}</h1></span>
+                        <span style="--idx: 2;" class="describe"><p>${item.describe}</p></span>
+                        <span style="--idx: 3;"><button class="discover-button">LIHAT DETAIL</button></span>
+                    </div>
+                `;
+                introduce.innerHTML += introHTML;
+                
+                ordinalNumber.innerHTML += `<h2 style="--idx: ${idx};">${(idx + 1).toString().padStart(2, '0')}</h2>`;
+            });
+            
+            // Aktifkan slide pertama
+            introduce.children[currentIndex].classList.add("active");
+            ordinalNumber.children[currentIndex].classList.add("active");
+        }
+
+        /**
+         * Fungsi untuk mengisi Thumbnail
+         */
+        function initThumbnail() {
+             thumbnailListWrapper.innerHTML = "";
+             
+             for (let i = 0; i < totalData; i++) {
+                const thumbnailHTML = `
+                    <div class="thumbnail" style="left: ${i * THUMBNAIL_OFFSET + 30}px;" data-index="${i}">
+                        <img src="${data[i].img}" alt="${data[i].place}">
+                    </div>
+                `;
+                thumbnailListWrapper.innerHTML += thumbnailHTML;
+            }
+
+            // Atur Thumbnail pertama sebagai yang utama (zoom)
+            const firstThumbnail = thumbnailListWrapper.querySelector(`.thumbnail[data-index="${currentIndex}"]`);
+            if (firstThumbnail) {
+                firstThumbnail.classList.add("zoom");
+            }
+        }
+        
+        /**
+         * Fungsi untuk melakukan animasi perpindahan slide
+         */
+        function nextSlide(targetIndex) {
+            
+            if (nextBtn.disabled) return;
+            nextBtn.disabled = true;
+
+            const prevIndex = currentIndex;
+            const newIndex = (typeof targetIndex === 'number') ? targetIndex : (currentIndex + 1) % totalData;
+
+            // 1. Animasi Thumbnail (Geser ke Kiri/Kanan)
+            const thumbnails = thumbnailListWrapper.querySelectorAll(".thumbnail");
+            
+            // Hitung perpindahan yang diperlukan
+            const moveAmount = (newIndex - prevIndex) * THUMBNAIL_OFFSET;
+            
+            // Hapus kelas 'zoom' dari thumbnail yang sedang aktif
+            const currentThumb = thumbnailListWrapper.querySelector(`.thumbnail[data-index="${prevIndex}"]`);
+            if (currentThumb) {
+                currentThumb.classList.remove("zoom");
+            }
+            
+            // Pindahkan semua thumbnail
+            thumbnails.forEach((thumb) => {
+                const currentLeft = parseInt(thumb.style.left);
+                thumb.style.left = `${currentLeft - moveAmount}px`; 
+            });
+
+            // 2. Update Index
+            currentIndex = newIndex;
+
+            // 3. Animasi Teks (Ganti Konten)
+            // Nonaktifkan teks lama
+            introduce.children[prevIndex].classList.remove("active");
+            ordinalNumber.children[prevIndex].classList.remove("active");
+            
+            // Aktifkan teks baru
+            setTimeout(() => {
+                introduce.children[currentIndex].classList.add("active");
+                ordinalNumber.children[currentIndex].classList.add("active");
+                
+                // Tunda sedikit untuk memastikan animasi pergeseran thumbnail selesai
+                setTimeout(() => {
+                    // 4. Tambahkan kelas 'zoom' ke thumbnail yang baru
+                    const nextThumb = thumbnailListWrapper.querySelector(`.thumbnail[data-index="${currentIndex}"]`);
+                    if (nextThumb) {
+                        nextThumb.classList.add("zoom");
+                    }
+                    nextBtn.disabled = false;
+                }, 100); 
+                
+            }, 500); 
+        }
+
+        // Event Listener untuk tombol NEXT
+        nextBtn.addEventListener("click", () => nextSlide());
+
+        // Event Listener untuk mengklik thumbnail
+        document.addEventListener('click', function(e) {
+            const thumbnail = e.target.closest('.thumbnail');
+            if (thumbnail) {
+                const targetIndex = parseInt(thumbnail.dataset.index);
+                if (targetIndex !== currentIndex) {
+                    nextSlide(targetIndex);
+                }
+            }
+        });
+
+
+        // Inisialisasi Saat Halaman Dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            initIntroduce();
+            initThumbnail();
+        });
+
+    </script>
+    </body>
+</html>
