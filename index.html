@@ -43,6 +43,10 @@
         .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
         .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
+        /* BANNER (Disesuaikan agar tidak terpotong di HP) */
+        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; display: block; }
+        .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; }
+
         /* PENGURUS */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
@@ -53,7 +57,7 @@
         .card-info h3 { font-size: 13px; margin: 0; color: #fff; }
         .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 5px; font-weight: bold; }
 
-        /* DAFTAR MURID (BISA DIPENCET) */
+        /* DAFTAR MURID */
         .murid-container { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 50px; border: 1px solid #333; }
         .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
         .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
@@ -62,16 +66,20 @@
 
         /* MODAL POPUP */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
-        .modal-content { background: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 380px; border-radius: 20px; position: relative; }
+        .modal-content { background: #1c1c1c; margin: 10% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 400px; border-radius: 20px; position: relative; }
         .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
+        .info-box { background:#252525; padding:15px; border-radius:10px; margin-top: 15px; }
+        .info-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; display: block; margin-top: 10px; }
+        .info-value { font-weight: bold; font-size: 15px; color: #fff; display: block; border-bottom: 1px solid #333; padding-bottom: 5px; }
 
         /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
             .nav-links { display: none; flex-direction: column; position: absolute; top: 67px; left: 0; width: 100%; background: #1c1c1c; padding: 20px; gap: 15px; border-bottom: 1px solid #333; }
             .nav-links.active { display: flex; }
             .menu-btn { display: block; }
-            .introduce h1 { font-size: 2rem; }
-            .custom-slider-container { height: 300px; }
+            .introduce h1 { font-size: 1.8rem; }
+            .custom-slider-container { height: 250px; }
+            .main-banner img { max-height: 250px; }
         }
     </style>
 </head>
@@ -104,7 +112,9 @@
             </div>
         </div>
 
-        <img src="123.jpeg" style="width: 100%; border-radius: 20px; margin: 40px 0; height: 300px; object-fit: cover;">
+        <div class="main-banner">
+            <img src="123.jpeg" alt="Banner IX B">
+        </div>
 
         <section id="pengurus">
             <h2 class="section-title">STRUKTUR PENGURUS</h2>
@@ -171,12 +181,19 @@
     <div id="siswaModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 style="font-family:'Bebas Neue'; text-align:center;">INFO SISWA</h2>
-            <div style="background:#252525; padding:15px; border-radius:10px;">
-                <p style="font-size:11px; color:var(--text-dim); margin:0;">NAMA LENGKAP</p>
-                <p id="m-nama" style="font-weight:bold; margin:5px 0 15px;"></p>
-                <p style="font-size:11px; color:var(--text-dim); margin:0;">NOMOR ABSEN</p>
-                <p id="m-absen" style="font-weight:bold; margin:5px 0 0;"></p>
+            <h2 style="font-family:'Bebas Neue'; text-align:center; color:white; letter-spacing:2px;">INFO SISWA</h2>
+            <div class="info-box">
+                <span class="info-label">Nama Lengkap</span>
+                <span id="m-nama" class="info-value"></span>
+                
+                <span class="info-label">Nama Panggilan</span>
+                <span id="m-panggilan" class="info-value"></span>
+                
+                <span class="info-label">Tanggal Lahir</span>
+                <span id="m-tgl" class="info-value"></span>
+
+                <span class="info-label">Nomor Absen</span>
+                <span id="m-absen" class="info-value"></span>
             </div>
         </div>
     </div>
@@ -210,28 +227,52 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
+        // DATA MURID LENGKAP
         const dataSiswa = [
-            "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
-            "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
-            "CALLYSTA NATHANIA", "DWI OKTAVIA PUTRI KARLINA", "EL - JIREH JECONIA HERWANDHA",
-            "EVAN DANIEL FERNANDA", "FLORENCIA FLORA ROSARI", "GRACIA CLARITA MAHARANI",
-            "IGNATIUS HEBERT DEVIN LARO", "IGNATIUS LIONEL ANDRES", "IVANA DWI PUTRI",
-            "IVANDER DHAMMA SOEDIANTO", "JUAN CARLOS IMMANUEL GULO", "KASIH ROMAOLI SIMBOLON",
-            "KEISHA JOSEPHINE ANGELINA WIYONO", "LAURENTIA FINOLLA HERFANSHA", "MARCELLO REYNARD CAESARIO",
-            "NOVAL CRISTIAN MARCELIO", "REIKO EMMANUEL INDRAWANA", "RENATA AMANDA WIGUNA DAMINTO",
-            "RIZQULLAH NANDHIS PRATAMA", "RUTH AVANGEDDIAZ JERICA", "SKOLASTIKA NESHA NIRWASITA",
-            "VERBIKO CHRISTIAN SEMBIRING", "VERONICA ANGGELENA CALLISTA MAKIRANGENG", "YECHONIA YUDRA RAJANI BEE",
-            "YEHUDA DRIYO RAHARJO"
+            { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
+            { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
+            { no: 3, lengkap: "ANANTA CAHYA PUTRI", panggilan: "Putri", tgl: "22 Januari 2011" },
+            { no: 4, lengkap: "ANGELICA KEISHA FRISANANDA", panggilan: "Keisha", tgl: "26 Januari 2011" },
+            { no: 5, lengkap: "ARCHANGELA DEVIKA KYNDA KURNIAWAN", panggilan: "Vika", tgl: "7 Februari 2011" },
+            { no: 6, lengkap: "BRYAN PUTRA SADONO", panggilan: "Bryan", tgl: "12 September 2011" },
+            { no: 7, lengkap: "CALLYSTA NATHANIA", panggilan: "Callysta", tgl: "27 Mei 2011" },
+            { no: 8, lengkap: "DWI OKTAVIA PUTRI KARLINA", panggilan: "Via", tgl: "18 Oktober 2011" },
+            { no: 9, lengkap: "EL - JIREH JECONIA HERWANDHA", panggilan: "Eljireh", tgl: "29 Agustus 2011" },
+            { no: 10, lengkap: "EVAN DANIEL FERNANDA", panggilan: "Evan", tgl: "18 September 2010" },
+            { no: 11, lengkap: "FLORENCIA FLORA ROSARI", panggilan: "Flo", tgl: "5 Mei 2011" },
+            { no: 12, lengkap: "GRACIA CLARITA MAHARANI", panggilan: "Ghea", tgl: "7 Februari 2011" },
+            { no: 13, lengkap: "IGNATIUS HEBERT DEVIN LARO", panggilan: "Devin", tgl: "17 Agustus 2010" },
+            { no: 14, lengkap: "IGNATIUS LIONEL ANDRES", panggilan: "Lionel", tgl: "22 Mei 2011" },
+            { no: 15, lengkap: "IVANA DWI PUTRI", panggilan: "Ivana", tgl: "3 Agustus 2010" },
+            { no: 16, lengkap: "IVANDER DHAMMA SOEDIANTO", panggilan: "Ivander", tgl: "31 Maret 2010" },
+            { no: 17, lengkap: "JUAN CARLOS IMMANUEL GULO", panggilan: "Juan", tgl: "30 April 2011" },
+            { no: 18, lengkap: "KASIH ROMAOLI SIMBOLON", panggilan: "Kasih", tgl: "28 Juli 2011" },
+            { no: 19, lengkap: "KEISHA JOSEPHINE ANGELINA WIYONO", panggilan: "Keke", tgl: "6 Januari 2011" },
+            { no: 20, lengkap: "LAURENTIA FINOLLA HERFANSHA", panggilan: "Finola", tgl: "27 Oktober 2010" },
+            { no: 21, lengkap: "MARCELLO REYNARD CAESARIO", panggilan: "Cello", tgl: "10 Desember 2010" },
+            { no: 22, lengkap: "NOVAL CRISTIAN MARCELIO", panggilan: "Noval", tgl: "12 November 2010" },
+            { no: 23, lengkap: "OLIVIA YOHANA PUTRI", panggilan: "Olivia", tgl: "8 Juli" },
+            { no: 24, lengkap: "REIKO EMMANUEL INDRAWANA", panggilan: "Reiko", tgl: "24 September 2011" },
+            { no: 25, lengkap: "RENATA AMANDA WIGUNA DAMINTO", panggilan: "Rena", tgl: "15 Juni 2011" },
+            { no: 26, lengkap: "RIZQULLAH NANDHIS PRATAMA", panggilan: "Rizky", tgl: "7 September 2010" },
+            { no: 27, lengkap: "RUTH AVANGEDDIAZ JERICA", panggilan: "Diaz", tgl: "26 September 2010" },
+            { no: 28, lengkap: "SKOLASTIKA NESHA NIRWASITA", panggilan: "Nesha", tgl: "9 Februari 2011" },
+            { no: 29, lengkap: "VERBIKO CHRISTIAN SEMBIRING", panggilan: "Verbiko", tgl: "25 Agustus 2011" },
+            { no: 30, lengkap: "VERONICA ANGGELENA CALLISTA MAKIRANGENG", panggilan: "Ellen", tgl: "25 Agustus 2011" },
+            { no: 31, lengkap: "YECHONIA YUDRA RAJANI BEE", panggilan: "Yecho", tgl: "4 November 2010" },
+            { no: 32, lengkap: "YEHUDA DRIYO RAHARJO", panggilan: "Yehuda", tgl: "28 Juli 2011" }
         ];
 
         const ml = document.getElementById('muridList');
-        dataSiswa.forEach((nama, index) => {
+        dataSiswa.forEach((s) => {
             const item = document.createElement('div');
             item.className = 'murid-item';
-            item.innerHTML = `<div class="murid-no">${index + 1}</div><div class="murid-nama">${nama}</div>`;
+            item.innerHTML = `<div class="murid-no">${s.no}</div><div class="murid-nama">${s.lengkap}</div>`;
             item.onclick = () => {
-                document.getElementById('m-nama').innerText = nama;
-                document.getElementById('m-absen').innerText = index + 1;
+                document.getElementById('m-nama').innerText = s.lengkap;
+                document.getElementById('m-panggilan').innerText = s.panggilan;
+                document.getElementById('m-tgl').innerText = s.tgl;
+                document.getElementById('m-absen').innerText = s.no;
                 document.getElementById('siswaModal').style.display = "block";
             };
             ml.appendChild(item);
