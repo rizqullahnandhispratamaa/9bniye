@@ -26,11 +26,29 @@
         .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--text-dim); }
+
+        /* SEARCH BAR PC */
+        .search-wrapper { position: relative; margin-left: 10px; }
+        .search-input {
+            background: #252525;
+            border: 1px solid #444;
+            color: white;
+            padding: 8px 15px 8px 35px;
+            border-radius: 25px;
+            font-size: 13px;
+            width: 180px;
+            transition: 0.4s;
+            outline: none;
+        }
+        .search-input:focus { width: 250px; border-color: white; }
+        .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 14px; }
+
         .menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
 
-        /* SLIDER */
+        /* SLIDER & BANNER */
         .custom-slider-container { position: relative; width: 100%; height: 450px; border-radius: 20px; overflow: hidden; margin-top: 25px; }
         .introduce { position: absolute; width: 100%; height: 100%; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
         .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
@@ -43,28 +61,25 @@
         .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
         .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
-        /* BANNER (Disesuaikan agar tidak terpotong di HP) */
         .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; display: block; }
         .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; }
 
-        /* PENGURUS */
+        /* PENGURUS & MURID GRID */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
+        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
         .card-img { height: 250px; overflow: hidden; background: #222; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
         .card-info h3 { font-size: 13px; margin: 0; color: #fff; }
         .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 5px; font-weight: bold; }
 
-        /* DAFTAR MURID */
         .murid-container { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 50px; border: 1px solid #333; }
         .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
         .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
-        .murid-item:hover { border-color: white; transform: translateX(5px); }
         .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
 
-        /* MODAL POPUP */
+        /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
         .modal-content { background: #1c1c1c; margin: 10% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 400px; border-radius: 20px; position: relative; }
         .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
@@ -77,8 +92,8 @@
             .nav-links { display: none; flex-direction: column; position: absolute; top: 67px; left: 0; width: 100%; background: #1c1c1c; padding: 20px; gap: 15px; border-bottom: 1px solid #333; }
             .nav-links.active { display: flex; }
             .menu-btn { display: block; }
-            .introduce h1 { font-size: 1.8rem; }
-            .custom-slider-container { height: 250px; }
+            .search-wrapper { margin-left: 0; width: 100%; }
+            .search-input { width: 100% !important; box-sizing: border-box; }
             .main-banner img { max-height: 250px; }
         }
     </style>
@@ -96,9 +111,12 @@
             
             <nav class="nav-links" id="navLinks">
                 <a href="#"><i class="fas fa-home"></i> HOME</a>
-                <a href="#"><i class="fas fa-search"></i> SEARCH</a>
-                <a href="#pengurus"><i class="fas fa-users"></i> PENGURUS</a>
-                <a href="#daftar-murid"><i class="fas fa-list"></i> DAFTAR MURID</a>
+                <a href="#pengurus">PENGURUS</a>
+                <a href="#daftar-murid">MURID</a>
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="mainSearch" class="search-input" placeholder="Cari nama...">
+                </div>
             </nav>
         </div>
     </header>
@@ -112,58 +130,56 @@
             </div>
         </div>
 
-        <div class="main-banner">
-            <img src="123.jpeg" alt="Banner IX B">
-        </div>
+        <div class="main-banner"><img src="123.jpeg" alt="Banner IX B"></div>
 
-        <section id="pengurus">
+        <section id="pengurus-sec">
             <h2 class="section-title">STRUKTUR PENGURUS</h2>
-            <div class="pengurus-grid">
-                <div class="pengurus-card">
+            <div class="pengurus-grid" id="pengurusGrid">
+                <div class="pengurus-card" data-nama="Agoes Risdianto">
                     <div class="card-img"><img src="Pp wa kosong.jpg"></div>
                     <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>WALI KELAS</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Yehuda Driyo Raharjo">
                     <div class="card-img"><img src="yehud.jpg"></div>
                     <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>KETUA KELAS</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Florencia Flora Rosari">
                     <div class="card-img"><img src="flooo.jpg"></div>
                     <div class="card-info"><h3>Florencia Flora Rosari</h3><p>WAKIL KETUA</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Rizqullah Nandhis">
                     <div class="card-img"><img src="kiki.jpg"></div>
                     <div class="card-info"><h3>Rizqullah Nandhis</h3><p>SEKRETARIS 1</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Renata Amanda">
                     <div class="card-img"><img src="rrenaaa.jpg"></div>
                     <div class="card-info"><h3>Renata Amanda</h3><p>SEKRETARIS 2</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Veronica Anggelena">
                     <div class="card-img"><img src="elen.jpg"></div>
                     <div class="card-info"><h3>Veronica Anggelena</h3><p>BENDAHARA</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Verbiko Christian">
                     <div class="card-img"><img src="bko.jpg"></div>
                     <div class="card-info"><h3>Verbiko Christian</h3><p>IT 1</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Noval Cristian">
                     <div class="card-img"><img src="nopal.jpg"></div>
                     <div class="card-info"><h3>Noval Cristian</h3><p>IT 2</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Ruth Avangeddiaz">
                     <div class="card-img"><img src="diaz..jpg"></div>
                     <div class="card-info"><h3>Ruth Avangeddiaz</h3><p>UKS 1</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Ignatius Lionel Andres">
                     <div class="card-img"><img src="Luffi pfp.jpg"></div>
                     <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>UKS 2</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Ananta Cahya Putri">
                     <div class="card-img"><img src="putri.jpg"></div>
                     <div class="card-info"><h3>Ananta Cahya Putri</h3><p>PERPUS 1</p></div>
                 </div>
-                <div class="pengurus-card">
+                <div class="pengurus-card" data-nama="Kasih Romaoli">
                     <div class="card-img"><img src="kasiiii.jpg"></div>
                     <div class="card-info"><h3>Kasih Romaoli</h3><p>PERPUS 2</p></div>
                 </div>
@@ -183,17 +199,10 @@
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2 style="font-family:'Bebas Neue'; text-align:center; color:white; letter-spacing:2px;">INFO SISWA</h2>
             <div class="info-box">
-                <span class="info-label">Nama Lengkap</span>
-                <span id="m-nama" class="info-value"></span>
-                
-                <span class="info-label">Nama Panggilan</span>
-                <span id="m-panggilan" class="info-value"></span>
-                
-                <span class="info-label">Tanggal Lahir</span>
-                <span id="m-tgl" class="info-value"></span>
-
-                <span class="info-label">Nomor Absen</span>
-                <span id="m-absen" class="info-value"></span>
+                <span class="info-label">Nama Lengkap</span><span id="m-nama" class="info-value"></span>
+                <span class="info-label">Nama Panggilan</span><span id="m-panggilan" class="info-value"></span>
+                <span class="info-label">Tanggal Lahir</span><span id="m-tgl" class="info-value"></span>
+                <span class="info-label">Nomor Absen</span><span id="m-absen" class="info-value"></span>
             </div>
         </div>
     </div>
@@ -201,17 +210,11 @@
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        const slideData = [
-            { img: "aib.jpg", title: "HUT SEKOLAH 74" },
-            { img: "Retret.jpg", title: "RETRET KELAS" },
-            { img: "lupa.jpg", title: "KEGIATAN KELAS" },
-            { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }
-        ];
-
+        // Slider Logic
+        const slideData = [{ img: "aib.jpg", title: "HUT SEKOLAH 74" }, { img: "Retret.jpg", title: "RETRET KELAS" }, { img: "lupa.jpg", title: "KEGIATAN KELAS" }, { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }];
         let currentSlide = 0;
         function initSlider() {
-            const ic = document.getElementById('introCont');
-            const tc = document.getElementById('thumbCont');
+            const ic = document.getElementById('introCont'); const tc = document.getElementById('thumbCont');
             slideData.forEach((s, i) => {
                 ic.innerHTML += `<div class="wrapper" id="i-${i}"><h1>${s.title}</h1></div>`;
                 tc.innerHTML += `<div class="thumbnail" id="t-${i}"><img src="${s.img}"></div>`;
@@ -227,7 +230,7 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // DATA MURID LENGKAP
+        // Data Murid
         const dataSiswa = [
             { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
             { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
@@ -267,6 +270,7 @@
         dataSiswa.forEach((s) => {
             const item = document.createElement('div');
             item.className = 'murid-item';
+            item.setAttribute('data-nama', s.lengkap.toLowerCase());
             item.innerHTML = `<div class="murid-no">${s.no}</div><div class="murid-nama">${s.lengkap}</div>`;
             item.onclick = () => {
                 document.getElementById('m-nama').innerText = s.lengkap;
@@ -276,6 +280,23 @@
                 document.getElementById('siswaModal').style.display = "block";
             };
             ml.appendChild(item);
+        });
+
+        // SEARCH LOGIC
+        document.getElementById('mainSearch').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            
+            // Filter Murid
+            document.querySelectorAll('.murid-item').forEach(el => {
+                const nama = el.getAttribute('data-nama');
+                el.style.display = nama.includes(term) ? 'flex' : 'none';
+            });
+
+            // Filter Pengurus
+            document.querySelectorAll('.pengurus-card').forEach(el => {
+                const nama = el.getAttribute('data-nama').toLowerCase();
+                el.style.display = nama.includes(term) ? 'block' : 'none';
+            });
         });
 
         function closeModal() { document.getElementById('siswaModal').style.display = "none"; }
