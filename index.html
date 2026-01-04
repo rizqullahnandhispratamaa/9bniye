@@ -28,8 +28,7 @@
         
         .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--text-dim); }
-
+        
         /* SEARCH BAR PC */
         .search-wrapper { position: relative; margin-left: 10px; }
         .search-input {
@@ -48,26 +47,31 @@
 
         .menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
 
-        /* SLIDER & BANNER */
-        .custom-slider-container { position: relative; width: 100%; height: 450px; border-radius: 20px; overflow: hidden; margin-top: 25px; }
+        /* SLIDER (FOTO BIAR GK KEPOTONG) */
+        .custom-slider-container { position: relative; width: 100%; height: 450px; border-radius: 20px; overflow: hidden; margin-top: 25px; background: #000; }
         .introduce { position: absolute; width: 100%; height: 100%; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
         .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
         .introduce .wrapper.active { opacity: 1; pointer-events: all; }
         .introduce h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
+        
         .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
-        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; }
+        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; display: flex; align-items: center; justify-content: center; }
         .thumbnail.zoom { opacity: 1; }
+        
+        /* Menggunakan contain supaya gambar masuk semua */
         .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
+
         .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
         .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
-        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; display: block; }
+        /* BANNER */
+        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; display: block; text-align: center; }
         .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; }
 
-        /* PENGURUS & MURID GRID */
+        /* PENGURUS & MURID */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
         .card-img { height: 250px; overflow: hidden; background: #222; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
@@ -87,14 +91,22 @@
         .info-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; display: block; margin-top: 10px; }
         .info-value { font-weight: bold; font-size: 15px; color: #fff; display: block; border-bottom: 1px solid #333; padding-bottom: 5px; }
 
-        /* MOBILE RESPONSIVE */
+        /* MOBILE RESPONSIVE UPDATED */
         @media (max-width: 768px) {
             .nav-links { display: none; flex-direction: column; position: absolute; top: 67px; left: 0; width: 100%; background: #1c1c1c; padding: 20px; gap: 15px; border-bottom: 1px solid #333; }
             .nav-links.active { display: flex; }
             .menu-btn { display: block; }
+            
+            /* Slider Diperkecil di HP */
+            .custom-slider-container { height: 200px; margin-top: 10px; }
+            .thumbnail img { object-fit: contain; filter: brightness(60%); } /* Agar foto utuh masuk */
+            .introduce h1 { font-size: 1.2rem; }
+            .navigation { bottom: 10px; right: 10px; }
+            .nav-controls button { padding: 5px 15px; font-size: 10px; }
+
             .search-wrapper { margin-left: 0; width: 100%; }
             .search-input { width: 100% !important; box-sizing: border-box; }
-            .main-banner img { max-height: 250px; }
+            .main-banner img { max-height: 200px; }
         }
     </style>
 </head>
@@ -197,7 +209,7 @@
     <div id="siswaModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 style="font-family:'Bebas Neue'; text-align:center; color:white; letter-spacing:2px;">INFO SISWA</h2>
+            <h2 style="font-family:'Bebas Neue'; text-align:center; color:white;">INFO SISWA</h2>
             <div class="info-box">
                 <span class="info-label">Nama Lengkap</span><span id="m-nama" class="info-value"></span>
                 <span class="info-label">Nama Panggilan</span><span id="m-panggilan" class="info-value"></span>
@@ -208,16 +220,18 @@
     </div>
 
     <script>
-        // Menu HP Toggle
         function toggleMenu() { 
             const links = document.getElementById('navLinks');
-            if(window.innerWidth <= 768) {
-                links.classList.toggle('active'); 
-            }
+            if(window.innerWidth <= 768) links.classList.toggle('active'); 
         }
 
-        // Slider Logic
-        const slideData = [{ img: "aib.jpg", title: "HUT SEKOLAH 74" }, { img: "Retret.jpg", title: "RETRET KELAS" }, { img: "lupa.jpg", title: "KEGIATAN KELAS" }, { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }];
+        const slideData = [
+            { img: "aib.jpg", title: "HUT SEKOLAH 74" }, 
+            { img: "Retret.jpg", title: "RETRET KELAS" }, 
+            { img: "lupa.jpg", title: "KEGIATAN KELAS" }, 
+            { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }
+        ];
+        
         let currentSlide = 0;
         function initSlider() {
             const ic = document.getElementById('introCont'); const tc = document.getElementById('thumbCont');
@@ -236,7 +250,7 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // Data Murid
+        // Data Murid (Pastikan data ini sudah lengkap di file Anda)
         const dataSiswa = [
             { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
             { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
@@ -288,16 +302,11 @@
             ml.appendChild(item);
         });
 
-        // Search Bar Logic
+        // Search Logic
         document.getElementById('mainSearch').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase();
             document.querySelectorAll('.murid-item').forEach(el => {
-                const nama = el.getAttribute('data-nama');
-                el.style.display = nama.includes(term) ? 'flex' : 'none';
-            });
-            document.querySelectorAll('.pengurus-card').forEach(el => {
-                const nama = el.getAttribute('data-nama').toLowerCase();
-                el.style.display = nama.includes(term) ? 'block' : 'none';
+                el.style.display = el.getAttribute('data-nama').includes(term) ? 'flex' : 'none';
             });
         });
 
