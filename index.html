@@ -27,22 +27,6 @@
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         .logo-name { font-weight: 700; font-size: 22px; }
 
-        /* SLIDER */
-        .custom-slider-container {
-            position: relative; width: 100%; height: 450px; 
-            border-radius: 20px; overflow: hidden; margin-top: 25px;
-        }
-        .introduce { position: absolute; width: 100%; height: 100%; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
-        .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
-        .introduce .wrapper.active { opacity: 1; pointer-events: all; }
-        .introduce h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
-        .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
-        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; }
-        .thumbnail.zoom { opacity: 1; }
-        .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
-        .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
-        .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
-
         /* STRUKTUR PENGURUS */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
@@ -59,15 +43,7 @@
         .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
         .murid-item:hover { border-color: white; transform: scale(1.02); }
         .murid-no { font-weight: bold; color: var(--accent); width: 30px; }
-        .murid-nama { font-size: 12px; text-transform: uppercase; }
-
-        /* MODAL POPUP */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
-        .modal-content { background: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 380px; border-radius: 20px; text-align: center; position: relative; }
-        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
-        .info-box { text-align: left; background: #252525; padding: 15px; border-radius: 10px; margin-top: 15px; }
-        .info-label { color: var(--text-dim); font-size: 11px; display: block; }
-        .info-value { color: #fff; font-size: 15px; font-weight: 500; display: block; margin-bottom: 10px; }
+        .murid-nama { font-size: 11px; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -78,24 +54,11 @@
                 <img src="logo.jpg" alt="Logo">
                 <span class="logo-name">IXBNUEVE</span>
             </a>
-            <nav>
-                <a href="#daftar-murid" style="color:white; text-decoration:none; font-size:14px; font-weight:bold;">DAFTAR MURID</a>
-            </nav>
+            <nav><a href="#daftar-murid" style="color:white; text-decoration:none; font-size:14px; font-weight:bold;">DAFTAR MURID</a></nav>
         </div>
     </header>
 
     <main class="container">
-        <div class="custom-slider-container">
-            <div class="introduce" id="introCont"></div>
-            <div class="thumbnail-list" id="thumbCont"></div>
-            <div class="navigation">
-                <div class="nav-controls">
-                    <button id="prevBtn">PREV</button>
-                    <button id="nextBtn">NEXT</button>
-                </div>
-            </div>
-        </div>
-
         <img src="123.jpeg" style="width: 100%; border-radius: 20px; margin: 40px 0;" alt="Banner">
 
         <section id="pengurus">
@@ -118,7 +81,7 @@
                     <div class="card-info"><h3>Rizqullah Nandhis</h3><p>SEKRETARIS 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="rrenaaa.jpg"></div>
                     <div class="card-info"><h3>Renata Amanda</h3><p>SEKRETARIS 2</p></div>
                 </div>
                 <div class="pengurus-card">
@@ -126,15 +89,15 @@
                     <div class="card-info"><h3>Veronica Anggelena</h3><p>BENDAHARA</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="bko.jpg"></div>
                     <div class="card-info"><h3>Verbiko Christian</h3><p>IT 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="nopal.jpg"></div>
                     <div class="card-info"><h3>Noval Cristian</h3><p>IT 2</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="pp kosong _).jpg"></div>
                     <div class="card-info"><h3>Ruth Avangeddiaz</h3><p>UKS 1</p></div>
                 </div>
                 <div class="pengurus-card">
@@ -142,118 +105,47 @@
                     <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>UKS 2</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="putri.jpg"></div>
                     <div class="card-info"><h3>Ananta Cahya Putri</h3><p>PERPUS 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="kasiiii.jpg"></div>
                     <div class="card-info"><h3>Kasih Romaoli</h3><p>PERPUS 2</p></div>
                 </div>
             </div>
         </section>
 
         <section id="daftar-murid">
-            <h2 class="section-title">DAFTAR MURID</h2>
+            <h2 class="section-title">DAFTAR SISWA KELAS IX B</h2>
             <div class="murid-container">
                 <div class="murid-grid" id="muridList"></div>
             </div>
         </section>
     </main>
 
-    <div id="siswaModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 style="font-family:'Bebas Neue'">INFO SISWA</h2>
-            <div class="info-box">
-                <span class="info-label">NAMA LENGKAP</span>
-                <span id="m-nama-lengkap" class="info-value"></span>
-                <span class="info-label">NAMA PANGGILAN</span>
-                <span id="m-panggilan" class="info-value"></span>
-                <span class="info-label">TANGGAL LAHIR</span>
-                <span id="m-tgl" class="info-value"></span>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const slideData = [
-            { img: "aib.jpg", title: "HUT SEKOLAH 74" },
-            { img: "Retret.jpg", title: "RETRET KELAS" },
-            { img: "lupa.jpg", title: "KEGIATAN KELAS" },
-            { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }
-        ];
-
-        let currentSlide = 0;
-        function initSlider() {
-            const ic = document.getElementById('introCont');
-            const tc = document.getElementById('thumbCont');
-            slideData.forEach((s, i) => {
-                ic.innerHTML += `<div class="wrapper" id="i-${i}"><h1>${s.title}</h1></div>`;
-                tc.innerHTML += `<div class="thumbnail" id="t-${i}"><img src="${s.img}"></div>`;
-            });
-            showSlide(0);
-        }
-        function showSlide(idx) {
-            document.querySelectorAll('.wrapper, .thumbnail').forEach(el => el.classList.remove('active', 'zoom'));
-            document.getElementById(`i-${idx}`).classList.add('active');
-            document.getElementById(`t-${idx}`).classList.add('zoom');
-            currentSlide = idx;
-        }
-        document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
-        document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
-
+        // Data berdasarkan gambar absen yang dikirim
         const dataSiswa = [
-            { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
-            { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
-            { no: 3, lengkap: "ANANTA CAHYA PUTRI", panggilan: "Putri", tgl: "22 Januari 2011" },
-            { no: 4, lengkap: "ANGELICA KEISHA FRISANANDA", panggilan: "Keisha", tgl: "26 Januari 2011" },
-            { no: 5, lengkap: "ARCHANGELA DEVIKA KYNDA KURNIAWAN", panggilan: "Vika", tgl: "7 Februari 2011" },
-            { no: 6, lengkap: "BRYAN PUTRA SADONO", panggilan: "Bryan", tgl: "12 September 2011" },
-            { no: 7, lengkap: "CALLYSTA NATHANIA", panggilan: "Callysta", tgl: "27 Mei 2011" },
-            { no: 8, lengkap: "DWI OKTAVIA PUTRI KARLINA", panggilan: "Via", tgl: "18 Oktober 2011" },
-            { no: 9, lengkap: "EL - JIREH JECONIA HERWANDHA", panggilan: "Eljireh", tgl: "29 Agustus 2011" },
-            { no: 10, lengkap: "EVAN DANIEL FERNANDA", panggilan: "Evan", tgl: "18 September 2010" },
-            { no: 11, lengkap: "FLORENCIA FLORA ROSARI", panggilan: "Flo", tgl: "5 Mei 2011" },
-            { no: 12, lengkap: "GRACIA CLARITA MAHARANI", panggilan: "Ghea", tgl: "7 Februari 2011" },
-            { no: 13, lengkap: "IGNATIUS HEBERT DEVIN LARO", panggilan: "Devin", tgl: "17 Agustus 2010" },
-            { no: 14, lengkap: "IGNATIUS LIONEL ANDRES", panggilan: "Lionel", tgl: "22 Mei 2011" },
-            { no: 15, lengkap: "IVANA DWI PUTRI", panggilan: "Ivana", tgl: "3 Agustus 2010" },
-            { no: 16, lengkap: "IVANDER DHAMMA SOEDIANTO", panggilan: "Ivander", tgl: "31 Maret 2010" },
-            { no: 17, lengkap: "JUAN CARLOS IMMANUEL GULO", panggilan: "Juan", tgl: "30 April 2011" },
-            { no: 18, lengkap: "KASIH ROMAOLI SIMBOLON", panggilan: "Kasih", tgl: "28 Juli 2011" },
-            { no: 19, lengkap: "KEISHA JOSEPHINE ANGELINA WIYONO", panggilan: "Keke", tgl: "6 Januari 2011" },
-            { no: 20, lengkap: "LAURENTIA FINOLLA HERFANSHA", panggilan: "Finola", tgl: "27 Oktober 2010" },
-            { no: 21, lengkap: "MARCELLO REYNARD CAESARIO", panggilan: "Cello", tgl: "10 Desember 2010" },
-            { no: 22, lengkap: "NOVAL CRISTIAN MARCELIO", panggilan: "Noval", tgl: "12 November 2010" },
-            { no: 23, lengkap: "OLIVIA YOHANA PUTRI", panggilan: "Olivia", tgl: "8 Juli" },
-            { no: 24, lengkap: "REIKO EMMANUEL INDRAWANA", panggilan: "Reiko", tgl: "24 September 2011" },
-            { no: 25, lengkap: "RENATA AMANDA WIGUNA DAMINTO", panggilan: "Rena", tgl: "15 Juni 2011" },
-            { no: 26, lengkap: "RIZQULLAH NANDHIS PRATAMA", panggilan: "Rizky", tgl: "7 September 2010" },
-            { no: 27, lengkap: "RUTH AVANGEDDIAZ JERICA", panggilan: "Diaz", tgl: "26 September 2010" },
-            { no: 28, lengkap: "SKOLASTIKA NESHA NIRWASITA", panggilan: "Nesha", tgl: "9 Februari 2011" },
-            { no: 29, lengkap: "VERBIKO CHRISTIAN SEMBIRING", panggilan: "Verbiko", tgl: "25 Agustus 2011" },
-            { no: 30, lengkap: "VERONICA ANGGELENA CALLISTA MAKIRANGENG", panggilan: "Ellen", tgl: "25 Agustus 2011" },
-            { no: 31, lengkap: "YECHONIA YUDRA RAJANI BEE", panggilan: "Yecho", tgl: "4 November 2010" },
-            { no: 32, lengkap: "YEHUDA DRIYO RAHARJO", panggilan: "Yehuda", tgl: "28 Juli 2011" }
+            "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
+            "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
+            "CALLYSTA NATHANIA", "DWI OKTAVIA PUTRI KARLINA", "EL - JIREH JECONIA HERWANDHA",
+            "EVAN DANIEL FERNANDA", "FLORENCIA FLORA ROSARI", "GRACIA CLARITA MAHARANI",
+            "IGNATIUS HEBERT DEVIN LARO", "IGNATIUS LIONEL ANDRES", "IVANA DWI PUTRI",
+            "IVANDER DHAMMA SOEDIANTO", "JUAN CARLOS IMMANUEL GULO", "KASIH ROMAOLI SIMBOLON",
+            "KEISHA JOSEPHINE ANGELINA WIYONO", "LAURENTIA FINOLLA HERFANSHA", "MARCELLO REYNARD CAESARIO",
+            "NOVAL CRISTIAN MARCELIO", "REIKO EMMANUEL INDRAWANA", "RENATA AMANDA WIGUNA DAMINTO",
+            "RIZQULLAH NANDHIS PRATAMA", "RUTH AVANGEDDIAZ JERICA", "SKOLASTIKA NESHA NIRWASITA",
+            "VERBIKO CHRISTIAN SEMBIRING", "VERONICA ANGGELENA CALLISTA MAKIRANGENG", "YECHONIA YUDRA RAJANI BEE",
+            "YEHUDA DRIYO RAHARJO"
         ];
 
         const ml = document.getElementById('muridList');
-        dataSiswa.forEach(s => {
+        dataSiswa.forEach((nama, index) => {
             const item = document.createElement('div');
             item.className = 'murid-item';
-            item.innerHTML = `<div class="murid-no">${s.no}</div><div class="murid-nama">${s.lengkap}</div>`;
-            item.onclick = () => {
-                document.getElementById('m-nama-lengkap').innerText = s.lengkap;
-                document.getElementById('m-panggilan').innerText = s.panggilan;
-                document.getElementById('m-tgl').innerText = s.tgl;
-                document.getElementById('siswaModal').style.display = "block";
-            };
+            item.innerHTML = `<div class="murid-no">${index + 1}</div><div class="murid-nama">${nama}</div>`;
             ml.appendChild(item);
         });
-
-        function closeModal() { document.getElementById('siswaModal').style.display = "none"; }
-        window.onclick = (e) => { if (e.target.id == "siswaModal") closeModal(); }
-        window.onload = initSlider;
     </script>
 </body>
 </html>
