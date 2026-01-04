@@ -111,8 +111,8 @@
             
             <nav class="nav-links" id="navLinks">
                 <a href="#"><i class="fas fa-home"></i> HOME</a>
-                <a href="#pengurus">PENGURUS</a>
-                <a href="#daftar-murid">MURID</a>
+                <a href="#pengurus-sec" onclick="toggleMenu()"><i class="fas fa-users"></i> PENGURUS</a>
+                <a href="#daftar-murid" onclick="toggleMenu()"><i class="fas fa-list"></i> MURID</a>
                 <div class="search-wrapper">
                     <i class="fas fa-search"></i>
                     <input type="text" id="mainSearch" class="search-input" placeholder="Cari nama...">
@@ -208,7 +208,13 @@
     </div>
 
     <script>
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        // Menu HP Toggle
+        function toggleMenu() { 
+            const links = document.getElementById('navLinks');
+            if(window.innerWidth <= 768) {
+                links.classList.toggle('active'); 
+            }
+        }
 
         // Slider Logic
         const slideData = [{ img: "aib.jpg", title: "HUT SEKOLAH 74" }, { img: "Retret.jpg", title: "RETRET KELAS" }, { img: "lupa.jpg", title: "KEGIATAN KELAS" }, { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }];
@@ -282,17 +288,13 @@
             ml.appendChild(item);
         });
 
-        // SEARCH LOGIC
+        // Search Bar Logic
         document.getElementById('mainSearch').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase();
-            
-            // Filter Murid
             document.querySelectorAll('.murid-item').forEach(el => {
                 const nama = el.getAttribute('data-nama');
                 el.style.display = nama.includes(term) ? 'flex' : 'none';
             });
-
-            // Filter Pengurus
             document.querySelectorAll('.pengurus-card').forEach(el => {
                 const nama = el.getAttribute('data-nama').toLowerCase();
                 el.style.display = nama.includes(term) ? 'block' : 'none';
