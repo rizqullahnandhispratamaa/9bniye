@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ixbnueve - Website Kelas</title>
+    <title>IXBNUEVE - Official Website</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,126 +20,114 @@
         body { font-family: 'Rubik', sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: #f0f0f0; overflow-x: hidden; }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER */
+        /* HEADER & NAV */
         header { background-color: rgba(28, 28, 28, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #333; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; }
         .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         
-        /* NAV PC */
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        
-        /* SEARCH WRAPPER */
+        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: var(--text-dim); }
+
+        /* SEARCH STYLING */
         .search-wrapper { position: relative; }
         .search-input {
-            background: #252525;
-            border: 1px solid #444;
-            color: white;
-            padding: 8px 15px 8px 35px;
-            border-radius: 25px;
-            font-size: 13px;
-            outline: none;
-            transition: 0.3s;
+            background: #252525; border: 1px solid #444; color: white;
+            padding: 8px 15px 8px 35px; border-radius: 25px; font-size: 13px;
+            outline: none; width: 180px; transition: 0.3s;
         }
+        .search-input:focus { width: 250px; border-color: white; }
+        .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
 
-        /* TOMBOL MENU HP */
         .menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
 
-        /* SLIDER (FOTO BIAR GK KEPOTONG) */
+        /* SLIDER & BANNER */
         .custom-slider-container { position: relative; width: 100%; height: 450px; border-radius: 20px; overflow: hidden; margin-top: 25px; background: #000; }
-        .introduce { position: absolute; width: 100%; height: 100%; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
-        .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
-        .introduce .wrapper.active { opacity: 1; pointer-events: all; }
-        .introduce h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
-        
-        .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
         .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; display: flex; align-items: center; justify-content: center; }
         .thumbnail.zoom { opacity: 1; }
         .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
+        
+        .introduce { position: absolute; width: 100%; height: 100%; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
+        .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
+        .introduce .wrapper.active { opacity: 1; }
+        .introduce h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
 
         .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
         .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
-        /* BANNER */
-        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; }
+        .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; text-align: center; }
         .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; }
 
-        /* GRID SYSTEM */
-        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
+        /* PENGURUS GRID */
+        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; font-family: 'Bebas Neue'; font-size: 2rem; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
         .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
-        .card-img { height: 250px; overflow: hidden; background: #222; }
+        .card-img { height: 250px; overflow: hidden; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
         .card-info h3 { font-size: 13px; margin: 0; color: #fff; }
         .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 5px; font-weight: bold; }
 
-        .murid-container { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 50px; border: 1px solid #333; }
-        .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        /* MURID LIST */
+        .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 50px; }
         .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .murid-item:hover { border-color: white; transform: translateY(-3px); }
         .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
 
-        /* MODAL */
+        /* MODAL INFO SISWA */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
-        .modal-content { background: #1c1c1c; margin: 10% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 400px; border-radius: 20px; position: relative; }
+        .modal-content { background: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 400px; border-radius: 20px; position: relative; }
         .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
         .info-box { background:#252525; padding:15px; border-radius:10px; margin-top: 15px; }
         .info-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; display: block; margin-top: 10px; }
         .info-value { font-weight: bold; font-size: 15px; color: #fff; display: block; border-bottom: 1px solid #333; padding-bottom: 5px; }
 
-        /* HP SPECIFIC STYLES */
+        /* MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
-            header { padding: 8px 0; }
+            .menu-btn { display: block; }
             .nav-links { 
                 display: none; flex-direction: column; position: absolute; 
                 top: 100%; left: 0; width: 100%; background: #1c1c1c; 
-                padding: 20px; gap: 15px; border-bottom: 2px solid #333;
+                padding: 20px; gap: 20px; border-bottom: 2px solid #333; box-sizing: border-box;
             }
             .nav-links.active { display: flex; }
-            .menu-btn { display: block; order: 3; }
             
-            /* Search khusus HP di bawah header */
-            .search-wrapper { order: 2; width: 60%; margin-left: auto; margin-right: 15px; }
-            .search-input { width: 100% !important; font-size: 12px; padding: 6px 10px 6px 30px; }
-            .search-wrapper i { left: 10px; font-size: 12px; }
+            /* Search di Garis 3 */
+            .header-container > .search-wrapper { display: none; }
+            .nav-links .search-wrapper { display: block; width: 100%; order: -1; }
+            .nav-links .search-input { width: 100% !important; box-sizing: border-box; }
 
-            /* Slider HP diperkecil & utuh */
-            .custom-slider-container { height: 180px; margin-top: 15px; }
-            .thumbnail img { object-fit: contain; filter: brightness(60%); }
-            .introduce h1 { font-size: 1rem; }
-            .navigation { bottom: 5px; right: 10px; }
-            .nav-controls button { padding: 4px 12px; font-size: 9px; }
+            /* Slider & Banner Kecil di HP agar tidak terpotong */
+            .custom-slider-container { height: 200px; margin-top: 10px; }
+            .thumbnail img { object-fit: contain; }
+            .introduce h1 { font-size: 1.2rem; }
+            .navigation { bottom: 10px; right: 20px; }
+            .nav-controls button { padding: 5px 15px; font-size: 10px; }
 
-            .main-banner img { max-height: 180px; }
-        }
-
-        /* DESKTOP SEARCH */
-        @media (min-width: 769px) {
-            .search-input { width: 180px; }
-            .search-input:focus { width: 250px; border-color: white; }
-            .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
+            .main-banner img { max-height: 200px; }
+            .pengurus-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .card-img { height: 180px; }
         }
     </style>
 </head>
-<body>
+<body id="top">
 
     <header>
         <div class="container header-container">
-            <a href="#" class="logo-area">
+            <a href="#top" class="logo-area">
                 <img src="logo.jpg" alt="Logo">
                 <span class="logo-name">IXBNUEVE</span>
             </a>
             
-            <div class="search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" id="mainSearch" class="search-input" placeholder="Cari teman...">
-            </div>
-
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
             
             <nav class="nav-links" id="navLinks">
-                <a href="#">HOME</a>
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="mainSearch" class="search-input" placeholder="Cari nama...">
+                </div>
+                <a href="#top" onclick="toggleMenu()">HOME</a>
                 <a href="#pengurus-sec" onclick="toggleMenu()">PENGURUS</a>
                 <a href="#daftar-murid" onclick="toggleMenu()">MURID</a>
             </nav>
@@ -158,7 +146,7 @@
         <div class="main-banner"><img src="123.jpeg" alt="Banner"></div>
 
         <section id="pengurus-sec">
-            <h2 class="section-title">STRUKTUR PENGURUS</h2>
+            <h2 class="section-title">PENGURUS KELAS</h2>
             <div class="pengurus-grid" id="pengurusGrid">
                 <div class="pengurus-card" data-nama="Agoes Risdianto">
                     <div class="card-img"><img src="Pp wa kosong.jpg"></div>
@@ -172,50 +160,12 @@
                     <div class="card-img"><img src="flooo.jpg"></div>
                     <div class="card-info"><h3>Florencia Flora Rosari</h3><p>WAKIL KETUA</p></div>
                 </div>
-                <div class="pengurus-card" data-nama="Rizqullah Nandhis">
-                    <div class="card-img"><img src="kiki.jpg"></div>
-                    <div class="card-info"><h3>Rizqullah Nandhis</h3><p>SEKRETARIS 1</p></div>
                 </div>
-                <div class="pengurus-card" data-nama="Renata Amanda">
-                    <div class="card-img"><img src="rrenaaa.jpg"></div>
-                    <div class="card-info"><h3>Renata Amanda</h3><p>SEKRETARIS 2</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Veronica Anggelena">
-                    <div class="card-img"><img src="elen.jpg"></div>
-                    <div class="card-info"><h3>Veronica Anggelena</h3><p>BENDAHARA</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Verbiko Christian">
-                    <div class="card-img"><img src="bko.jpg"></div>
-                    <div class="card-info"><h3>Verbiko Christian</h3><p>IT 1</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Noval Cristian">
-                    <div class="card-img"><img src="nopal.jpg"></div>
-                    <div class="card-info"><h3>Noval Cristian</h3><p>IT 2</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Ruth Avangeddiaz">
-                    <div class="card-img"><img src="diaz..jpg"></div>
-                    <div class="card-info"><h3>Ruth Avangeddiaz</h3><p>UKS 1</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Ignatius Lionel Andres">
-                    <div class="card-img"><img src="Luffi pfp.jpg"></div>
-                    <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>UKS 2</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Ananta Cahya Putri">
-                    <div class="card-img"><img src="putri.jpg"></div>
-                    <div class="card-info"><h3>Ananta Cahya Putri</h3><p>PERPUS 1</p></div>
-                </div>
-                <div class="pengurus-card" data-nama="Kasih Romaoli">
-                    <div class="card-img"><img src="kasiiii.jpg"></div>
-                    <div class="card-info"><h3>Kasih Romaoli</h3><p>PERPUS 2</p></div>
-                </div>
-            </div>
         </section>
 
         <section id="daftar-murid">
             <h2 class="section-title">DAFTAR MURID</h2>
-            <div class="murid-container">
-                <div class="murid-grid" id="muridList"></div>
-            </div>
+            <div class="murid-grid" id="muridList"></div>
         </section>
     </main>
 
@@ -233,18 +183,19 @@
     </div>
 
     <script>
+        // Toggle Navigasi HP
         function toggleMenu() { 
             const links = document.getElementById('navLinks');
             if(window.innerWidth <= 768) links.classList.toggle('active'); 
         }
 
+        // Logic Slider
         const slideData = [
             { img: "aib.jpg", title: "HUT SEKOLAH 74" }, 
-            { img: "Retret.jpg", title: "RETRET KELAS" }, 
-            { img: "lupa.jpg", title: "KEGIATAN KELAS" }, 
+            { img: "Retret.jpg", title: "RETRET KELAS" },
+            { img: "lupa.jpg", title: "KEGIATAN KELAS" },
             { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }
         ];
-        
         let currentSlide = 0;
         function initSlider() {
             const ic = document.getElementById('introCont'); const tc = document.getElementById('thumbCont');
@@ -263,6 +214,7 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
+        // Data Murid Lengkap
         const dataSiswa = [
             { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
             { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
@@ -298,6 +250,7 @@
             { no: 32, lengkap: "YEHUDA DRIYO RAHARJO", panggilan: "Yehuda", tgl: "28 Juli 2011" }
         ];
 
+        // Render Murid
         const ml = document.getElementById('muridList');
         dataSiswa.forEach((s) => {
             const item = document.createElement('div');
@@ -314,16 +267,12 @@
             ml.appendChild(item);
         });
 
-        // SEARCH LOGIC (MURID & PENGURUS)
+        // Search Logic
         document.getElementById('mainSearch').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase();
-            
-            // Filter Murid
             document.querySelectorAll('.murid-item').forEach(el => {
                 el.style.display = el.getAttribute('data-nama').includes(term) ? 'flex' : 'none';
             });
-
-            // Filter Pengurus
             document.querySelectorAll('.pengurus-card').forEach(el => {
                 const nama = el.getAttribute('data-nama').toLowerCase();
                 el.style.display = nama.includes(term) ? 'block' : 'none';
