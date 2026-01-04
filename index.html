@@ -66,9 +66,7 @@
             padding: 0;
         }
 
-        nav li {
-            margin: 0 20px; 
-        }
+        nav li { margin: 0 20px; }
 
         nav a {
             text-decoration: none;
@@ -92,7 +90,7 @@
             width: 250px;
             font-size: 14px;
         }
-        
+
         .search-bar button {
             background-color: #2b2b2b; 
             border: 1px solid #444;
@@ -105,10 +103,7 @@
 
         main { padding-top: 30px; padding-bottom: 50px; }
         
-        /* ========================================= */
-        /* GAYA SLIDE FULL SCREEN & TEKS DI TENGAH */
-        /* ========================================= */
-        
+        /* SLIDER STYLES */
         .custom-slider-container {
             position: relative;
             width: 100%; 
@@ -116,12 +111,10 @@
             border-radius: 10px;
             overflow: hidden;
             background-color: #000; 
-            display: flex;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             margin-bottom: 40px;
         }
 
-        /* Bagian Konten Teks di Tengah */
         .custom-slider-container .introduce {
             position: absolute;
             top: 0;
@@ -138,10 +131,9 @@
         
         .introduce .wrapper {
             position: absolute;
-            width: 80%;
+            width: 85%;
             opacity: 0;
             transition: 0.8s ease;
-            pointer-events: none;
         }
         
         .introduce .wrapper.active {
@@ -162,25 +154,26 @@
         }
 
         .introduce .country {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            color: #fff;
         }
 
         .introduce .place h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 4.5rem;
+            font-size: 5rem;
             text-transform: uppercase;
             margin: 10px 0;
             line-height: 1;
-            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
         }
 
         .introduce .describe p {
-            font-size: 1rem;
-            max-width: 650px;
+            font-size: 1.1rem;
+            max-width: 700px;
             margin: 15px auto;
             font-weight: 300;
             line-height: 1.6;
@@ -192,25 +185,17 @@
             color: #000;
             border: none;
             border-radius: 30px;
-            padding: 12px 30px;
-            margin-top: 20px;
+            padding: 12px 35px;
             font-weight: 600;
             text-transform: uppercase;
             cursor: pointer;
             pointer-events: all;
         }
 
-        /* Konten Gambar Full Screen */
         .custom-slider-container .content {
             width: 100%;
             height: 100%;
             position: relative;
-        }
-
-        .thumbnail-list {
-            position: relative;
-            width: 100%;
-            height: 100%;
         }
 
         .thumbnail {
@@ -220,7 +205,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: 1s cubic-bezier(0.6, 0.1, 0.3, 1);
+            transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10;
         }
         
@@ -233,10 +218,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(40%);
+            filter: brightness(45%);
         }
         
-        /* Navigasi */
         .custom-slider-container .navigation {
             position: absolute;
             bottom: 40px; 
@@ -246,55 +230,39 @@
             z-index: 40; 
         }
         
-        .nav-btns {
-            display: flex;
-            gap: 10px;
-            margin-right: 20px;
-        }
+        .nav-controls { display: flex; gap: 15px; margin-right: 25px; }
 
-        .nav-btns button {
-            font-family: 'Rubik', sans-serif;
+        .nav-controls button {
             background-color: transparent;
-            color: #ffffff;
-            border: 1px solid #ffffff;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.6);
             border-radius: 50px;
-            width: 80px;
-            height: 40px;
+            width: 90px;
+            height: 45px;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
         }
         
-        .nav-btns button:hover {
-            background-color: #fff;
-            color: #000;
-        }
+        .nav-controls button:hover { background: #fff; color: #000; border-color: #fff; }
         
-        .navigation .line {
-            width: 50px;
-            height: 1px;
-            background-color: rgba(255,255,255,0.5);
-            margin-right: 20px;
-        }
+        .navigation .line { width: 60px; height: 1px; background: rgba(255,255,255,0.3); margin-right: 20px; }
         
-        .ordinal-number {
-            width: 40px;
-            height: 40px;
-            overflow: hidden;
-            position: relative;
-        }
-        
+        .ordinal-number { width: 45px; height: 45px; overflow: hidden; position: relative; }
         .ordinal-number h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             position: absolute;
             transform: translateY(100%); 
-            transition: 0.5s ease;
+            transition: 0.6s ease;
             margin: 0;
+            width: 100%;
+            text-align: center;
         }
-        
         .ordinal-number h2.active { transform: translateY(0); }
 
-        /* PENGURUS KELAS (LENGKAP 850 BARIS LOGIKA) */
+        /* PENGURUS KELAS GRID */
+        .pengurus-section { margin-top: 50px; }
         .pengurus-section h2 {
             color: #fff;
             text-transform: uppercase;
@@ -306,35 +274,28 @@
 
         .pengurus-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 25px; 
         }
 
-        .pengurus-card {
+        .pengurus-card { 
             background-color: #1c1c1c; 
-            border-radius: 8px;
+            border-radius: 12px; 
             overflow: hidden;
-        }
-
-        .card-img-placeholder {
-            background-color: #2b2b2b; 
-            height: 220px; 
-            overflow: hidden;
+            transition: transform 0.3s;
         }
         
-        .card-img-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-        }
+        .pengurus-card:hover { transform: translateY(-10px); }
 
-        .card-info { padding: 20px 10px; text-align: center; }
-        .card-info h3 { font-size: 16px; margin: 0 0 5px 0; }
+        .card-img-placeholder { height: 280px; overflow: hidden; background: #222; }
+        .card-img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .card-info { padding: 20px 15px; text-align: center; }
+        .card-info h3 { color: #fff; font-size: 16px; margin: 0 0 5px 0; }
         .card-info p { color: #aaa; font-size: 14px; margin: 0; }
 
         @media (max-width: 768px) {
             .custom-slider-container { height: 450px; }
-            .introduce .place h1 { font-size: 2.5rem; }
+            .introduce .place h1 { font-size: 3rem; }
             .navigation { right: 50%; transform: translateX(50%); bottom: 20px; }
         }
     </style>
@@ -367,8 +328,8 @@
             <div class="content">
                 <div class="thumbnail-list" id="thumbnailWrapper"></div>
                 <div class="navigation">
-                    <div class="nav-btns">
-                        <button id="prevBtn">PREV</button>
+                    <div class="nav-controls">
+                        <button id="prevBtn">BACK</button>
                         <button id="nextBtn">NEXT</button>
                     </div>
                     <span class="line"></span>
@@ -378,72 +339,144 @@
         </div>
 
         <section class="promo-banner">
-            <img src="1_2_3.jpeg" alt="Banner">
+            <img src="1_2_3.jpeg" alt="Banner Gabungan" style="width: 100%; border-radius: 10px;">
         </section>
 
         <section class="pengurus-section">
             <h2>PENGURUS KELAS</h2>
             <div class="pengurus-grid">
+                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Wali Kelas"></div>
-                    <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>Wali Kelas</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Foto Wali Kelas">
+                    </div>
+                    <div class="card-info">
+                        <h3>Agoes Risdianto, S.Pd</h3>
+                        <p>Wali Kelas</p>
+                    </div>
                 </div>
+                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Yehuda.jpg" alt="Yehuda"></div>
-                    <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>Ketua Kelas</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="yehud.jpg" alt="Foto Yehuda">
+                    </div>
+                    <div class="card-info">
+                        <h3>Yehuda Driyo Raharjo</h3>
+                        <p>Ketua Kelas</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Flo.jpg" alt="Flo"></div>
-                    <div class="card-info"><h3>Florencia Flora Rosari</h3><p>Wakil Ketua Murid</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="flooo.jpg" alt="Foto Florencia">
+                    </div>
+                    <div class="card-info">
+                        <h3>Florencia Flora Rosari</h3>
+                        <p>Wakil Ketua Murid</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Rizky.jpg" alt="Rizky"></div>
-                    <div class="card-info"><h3>Rizqullah Nandhis Pratama</h3><p>Sekretaris 1</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="kiki.jpg" alt="Foto Rizqullah">
+                    </div>
+                    <div class="card-info">
+                        <h3>Rizqullah Nandhis Pratama</h3>
+                        <p>Sekretaris 1</p>
+                    </div>
                 </div>
+                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Renata.jpg" alt="Renata"></div>
-                    <div class="card-info"><h3>Renata Amanda Wiguna Daminto</h3><p>Sekretaris 2</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="rrenaaa.jpg" alt="Foto Renata">
+                    </div>
+                    <div class="card-info">
+                        <h3>Renata Amanda Wiguna Daminto</h3>
+                        <p>Sekretaris 2</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Ellen.jpg" alt="Ellen"></div>
-                    <div class="card-info"><h3>Veronica Anggelena Callista</h3><p>Bendahara</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="elen.jpg" alt="Foto Veronica">
+                    </div>
+                    <div class="card-info">
+                        <h3>Veronica Anggelena Callista Makirangeng</h3>
+                        <p>Bendahara</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Verbiko.jpg" alt="Verbiko"></div>
-                    <div class="card-info"><h3>Verbiko Christian Sembiring</h3><p>Tim IT 1</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="bko.jpg" alt="Foto Verbiko">
+                    </div>
+                    <div class="card-info">
+                        <h3>Verbiko Christian Sembiring</h3>
+                        <p>Tim IT 1</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Noval.jpg" alt="Noval"></div>
-                    <div class="card-info"><h3>Noval Cristian Marcelio</h3><p>Tim IT 2</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="nopal.jpg" alt="Foto Noval">
+                    </div>
+                    <div class="card-info">
+                        <h3>Noval Cristian Marcelio</h3>
+                        <p>Tim IT 2</p>
+                    </div>
                 </div>
+                
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Putri.jpg" alt="Putri"></div>
-                    <div class="card-info"><h3>Ananta Cahya Putri</h3><p>Tim Perpustakaan 1</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="putri.jpg" alt="Foto Ananta">
+                    </div>
+                    <div class="card-info">
+                        <h3>Ananta Cahya Putri</h3>
+                        <p>Tim Perpustakaan 1</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Kasih.jpg" alt="Kasih"></div>
-                    <div class="card-info"><h3>Kasih Romaoli Simbolon</h3><p>Tim Perpustakaan 2</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="kasiiii.jpg" alt="Foto Kasih">
+                    </div>
+                    <div class="card-info">
+                        <h3>Kasih Romaoli Simbolon </h3>
+                        <p>Tim Perpustakaan 2</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="UKS1"></div>
-                    <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>Seksi UKS 1</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg" alt="Foto Seksi UKS 1">
+                    </div>
+                    <div class="card-info">
+                        <h3>Ignatius Lionel Andres</h3>
+                        <p>Seksi UKS 1</p>
+                    </div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img-placeholder"><img src="Diaz.jpg" alt="Diaz"></div>
-                    <div class="card-info"><h3>Ruth Avangeddiaz Jerica</h3><p>Seksi UKS 2</p></div>
+                    <div class="card-img-placeholder">
+                        <img src="diaz..jpg" alt="Foto Ruth">
+                    </div>
+                    <div class="card-info">
+                        <h3>Ruth Avangeddiaz Jerica</h3>
+                        <p>Seksi UKS 2</p>
+                    </div>
                 </div>
+
             </div>
         </section>
     </main>
     
     <script>
-        const data = [
-            { img: "aib.jpg", place: "HUT SEKOLAH ke 74 TH", desc: "Momen perayaan hari jadi sekolah dengan tawa dan semangat yang tak terlupakan. IXB paling heboh!" },
-            { img: "Retret.jpg", place: "RETRET", desc: "Refleksi mendalam dan penguatan iman di Retret. Momen damai bersama teman-teman sekelas." },
-            { img: "lupa.jpg", place: "LOMBA 17 AGUSTUS", desc: "Tampil memukau dengan balutan busana daerah, menunjukkan kekayaan budaya Nusantara." },
-            { img: "bulan bahasa.jpg", place: "BULAN BAHASA 2025", desc: "Kekompakan kelas dalam balutan warna bumi, menunjukkan solidaritas yang kuat." },
-            { img: "WhatsApp Image 2025-10-30 at 18.23.07_ae01bd2d.jpg", place: "Hut Sekolah", desc: "Walau harus menjaga jarak, kebersamaan kami tetap erat dan kompak." },
-            { img: "WhatsApp Image 2025-10-30 at 18.23.07_5d981b79.jpg", place: "hut sekolah", desc: "Foto di depan ruang kelas! Kenangan yang tak akan terlupakan." }
+        const slideData = [
+            { img: "lomab (1).jpg", title: "HUT SEKOLAH ke 74 TH", desc: "Momen perayaan hari jadi sekolah dengan tawa dan semangat yang tak terlupakan. IXB paling heboh!" },
+            { img: "lomab (2).jpg", title: "HUT SEKOLAH", desc: "Kekompakan kelas IXB dalam memeriahkan acara ulang tahun sekolah." },
+            { img: "Retret.jpg", title: "RETRET", desc: "Refleksi mendalam dan penguatan iman di Retret. Momen damai bersama teman-teman sekelas." },
+            { img: "lupa.jpg", title: "LOMBA 17 AGUSTUS", desc: "Tampil memukau dengan balutan busana daerah, menunjukkan kekayaan budaya Nusantara." },
+            { img: "bulan bahasa.jpg", title: "BULAN BAHASA 2025", desc: "Kekompakan kelas dalam balutan warna bumi, menunjukkan solidaritas yang kuat." }
         ];
         
         let currentIndex = 0;
@@ -451,34 +484,31 @@
         const ordinalNumber = document.getElementById("ordinalNumber");
         const thumbnailWrapper = document.getElementById("thumbnailWrapper");
 
-        function init() {
+        function initSlider() {
             introduce.innerHTML = "";
             ordinalNumber.innerHTML = "";
             thumbnailWrapper.innerHTML = "";
             
-            data.forEach((item, idx) => {
-                // Teks di tengah (Kelas IXB cuma satu)
+            slideData.forEach((item, idx) => {
                 introduce.innerHTML += `
                     <div class="wrapper" id="intro-${idx}">
                         <span style="--idx: 0;" class="country">KELAS IXB</span>
-                        <span style="--idx: 1;" class="place"><h1>${item.place}</h1></span>
+                        <span style="--idx: 1;" class="place"><h1>${item.title}</h1></span>
                         <span style="--idx: 2;" class="describe"><p>${item.desc}</p></span>
                         <span style="--idx: 3;"><button class="discover-button">LIHAT DETAIL</button></span>
                     </div>
                 `;
-                // Gambar full screen
                 thumbnailWrapper.innerHTML += `
                     <div class="thumbnail" id="thumb-${idx}">
-                        <img src="${item.img}" alt="${item.place}">
+                        <img src="${item.img}" alt="${item.title}">
                     </div>
                 `;
-                // Nomor
                 ordinalNumber.innerHTML += `<h2 id="num-${idx}">${(idx + 1).toString().padStart(2, '0')}</h2>`;
             });
-            show(0);
+            showSlide(0);
         }
 
-        function show(index) {
+        function showSlide(index) {
             document.querySelectorAll(".wrapper").forEach(el => el.classList.remove("active"));
             document.querySelectorAll(".thumbnail").forEach(el => el.classList.remove("zoom"));
             document.querySelectorAll(".ordinal-number h2").forEach(el => el.classList.remove("active"));
@@ -490,16 +520,14 @@
         }
 
         document.getElementById("nextBtn").addEventListener("click", () => {
-            let next = (currentIndex + 1) % data.length;
-            show(next);
+            showSlide((currentIndex + 1) % slideData.length);
         });
 
         document.getElementById("prevBtn").addEventListener("click", () => {
-            let prev = (currentIndex - 1 + data.length) % data.length;
-            show(prev);
+            showSlide((currentIndex - 1 + slideData.length) % slideData.length);
         });
 
-        document.addEventListener("DOMContentLoaded", init);
+        document.addEventListener("DOMContentLoaded", initSlider);
     </script>
 </body>
 </html>
