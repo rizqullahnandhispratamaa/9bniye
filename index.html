@@ -17,296 +17,168 @@
         }
 
         html { scroll-behavior: smooth; } 
-
-        body {
-            font-family: 'Rubik', sans-serif;
-            margin: 0; padding: 0;
-            background-color: var(--bg-dark); color: #f0f0f0;
-            overflow-x: hidden;
-        }
-
+        body { font-family: 'Rubik', sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: #f0f0f0; overflow-x: hidden; }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        header {
-            background-color: rgba(28, 28, 28, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #333;
-            padding: 12px 0;
-            position: sticky; top: 0; z-index: 1000;
-        }
-
+        /* HEADER */
+        header { background-color: rgba(28, 28, 28, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #333; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; }
-        
         .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         .logo-name { font-weight: 700; font-size: 22px; }
 
-        .menu-wrapper { display: flex; align-items: center; gap: 30px; }
-        nav ul { list-style: none; display: flex; margin: 0; padding: 0; gap: 20px; }
-        nav a { text-decoration: none; color: var(--text-dim); transition: 0.3s; font-size: 14px; text-transform: uppercase; font-weight: 500; }
-        nav a:hover { color: var(--accent); }
-
-        .search-bar { 
-            display: flex; background: #2b2b2b; border-radius: 30px; padding: 4px 15px; border: 1px solid #444; align-items: center;
-        }
-        .search-bar input { background: transparent; border: none; color: #fff; outline: none; width: 160px; padding: 8px; }
-
-        .hamburger { display: none; font-size: 24px; cursor: pointer; color: var(--accent); }
-
-        .custom-slider-container {
-            position: relative; width: 100%; height: 500px; 
-            border-radius: 20px; overflow: hidden; margin-top: 25px; margin-bottom: 50px;
-        }
-        .introduce {
-            position: absolute; width: 100%; height: 100%; z-index: 30;
-            display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none;
-        }
-        .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
-        .introduce .wrapper.active { opacity: 1; pointer-events: all; }
-        .introduce h1 { font-family: 'Bebas Neue'; font-size: 4rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
-
-        .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
-        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; }
-        .thumbnail.zoom { opacity: 1; }
-        .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
-
-        .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
-        .nav-controls button { 
-            background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; 
-            border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; 
-        }
-
+        /* DAFTAR MURID */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
+        .murid-container { background: var(--card-bg); border-radius: 0 0 40px 40px; padding: 40px; margin-bottom: 50px; border: 1px solid #333; }
+        .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .murid-item { 
+            display: flex; align-items: center; background: #252525; padding: 12px 20px; 
+            border-radius: 15px; border: 1px solid #333; cursor: pointer; transition: 0.3s;
+        }
+        .murid-item:hover { background: #333; transform: translateY(-3px); border-color: var(--accent); }
+        .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
+        .murid-nama { font-size: 12px; color: #eee; text-transform: uppercase; }
+
+        /* MODAL INFO SISWA */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid var(--accent);
+            width: 80%; max-width: 400px; border-radius: 20px; text-align: center; position: relative;
+        }
+        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; color: var(--text-dim); }
+        .modal-content h2 { color: var(--accent); margin-bottom: 20px; font-family: 'Bebas Neue'; letter-spacing: 2px; }
+        .info-box { text-align: left; background: #252525; padding: 15px; border-radius: 10px; margin-top: 10px; }
+        .info-label { color: var(--text-dim); font-size: 12px; display: block; margin-bottom: 2px; }
+        .info-value { color: #fff; font-weight: 500; font-size: 16px; margin-bottom: 10px; display: block; }
+
+        /* (Gunakan style pengurus & slider dari kode sebelumnya) */
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; }
-        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
         .card-img { height: 220px; overflow: hidden; background: #222; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
         .card-info h3 { font-size: 14px; margin: 0; color: #fff; }
         .card-info p { font-size: 11px; color: var(--text-dim); margin: 5px 0 0; }
-
-        .murid-container {
-            background: var(--card-bg);
-            border-radius: 0 0 40px 40px; 
-            padding: 40px;
-            margin-bottom: 50px;
-            border: 1px solid #333;
-        }
-        .murid-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        .murid-item {
-            display: flex;
-            align-items: center;
-            background: #252525;
-            padding: 12px 20px;
-            border-radius: 15px;
-            border: 1px solid #333;
-        }
-        .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
-        .murid-nama { font-size: 12px; color: #eee; text-transform: uppercase; }
-
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .menu-wrapper {
-                position: fixed; top: 0; right: -100%; background: #1a1a1a;
-                width: 75%; height: 100vh; flex-direction: column;
-                padding: 100px 30px; gap: 30px; transition: 0.4s; z-index: 999;
-            }
-            .menu-wrapper.active { right: 0; }
-            nav ul { flex-direction: column; width: 100%; }
-            .introduce h1 { font-size: 2.5rem; }
-        }
     </style>
 </head>
-<body id="home-top">
+<body>
 
     <header>
         <div class="container header-container">
-            <a href="#home-top" class="logo-area">
+            <a href="#" class="logo-area">
                 <img src="logo.jpg" alt="Logo">
                 <span class="logo-name">IXBNUEVE</span>
             </a>
-            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
-            <div class="menu-wrapper" id="menuWrapper">
-                <nav>
-                    <ul>
-                        <li><a href="#home-top">Home</a></li>
-                        <li><a href="#daftar-murid">Daftar Murid</a></li>
-                        <li><a href="#struktur-kelas">Daftar Pengurus</a></li>
-                    </ul>
-                </nav>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Cari pengurus..." onkeyup="searchPengurus()">
-                </div>
-            </div>
+            <nav>
+                <ul style="list-style: none; display: flex; gap: 20px;">
+                    <li><a href="#daftar-murid" style="text-decoration:none; color:white;">Daftar Murid</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main class="container">
-        <div class="custom-slider-container">
-            <div class="introduce" id="introCont"></div>
-            <div class="thumbnail-list" id="thumbCont"></div>
-            <div class="navigation">
-                <div class="nav-controls">
-                    <button id="prevBtn">BACK</button>
-                    <button id="nextBtn">NEXT</button>
-                </div>
-            </div>
+        <div style="margin: 25px 0 50px;">
+            <img src="123.jpeg" style="width: 100%; border-radius: 15px;" alt="Banner Kelas">
         </div>
-
-        <div style="margin-bottom: 50px;">
-            <img src="123.jpeg" style="width: 100%; border-radius: 15px;" alt="Banner IX B">
-        </div>
-
-        <section id="struktur-kelas">
-            <h2 class="section-title">STRUKTUR PENGURUS KELAS</h2>
-            <div class="pengurus-grid" id="pengurusGrid">
-                
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="pp kosong _).jpg" alt="Wali Kelas"></div>
-                    <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>Wali Kelas</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="yehud.jpg" alt="Ketua Kelas"></div>
-                    <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>Ketua Kelas</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="flooo.jpg" alt="Wakil Ketua"></div>
-                    <div class="card-info"><h3>Florencia Flora Rosari</h3><p>Wakil Ketua Murid</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg" alt="Sekretaris 1"></div>
-                    <div class="card-info"><h3>Rizqullah Nandhis Pratama</h3><p>Sekretaris 1</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="rrenaaa.jpg" alt="Sekretaris 2"></div>
-                    <div class="card-info"><h3>Renata Amanda Wiguna Daminto</h3><p>Sekretaris 2</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="elen.jpg" alt="Bendahara"></div>
-                    <div class="card-info"><h3>Veronica Anggelena Callista Makirangeng</h3><p>Bendahara</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="bko.jpg" alt="IT 1"></div>
-                    <div class="card-info"><h3>Verbiko Christian Sembiring</h3><p>Tim IT 1</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="nopal.jpg" alt="IT 2"></div>
-                    <div class="card-info"><h3>Noval Cristian Marcelio</h3><p>Tim IT 2</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="putri.jpg" alt="Perpus 1"></div>
-                    <div class="card-info"><h3>Ananta Cahya Putri</h3><p>Tim Perpustakaan 1</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="kasiiii.jpg" alt="Perpus 2"></div>
-                    <div class="card-info"><h3>Kasih Romaoli Simbolon</h3><p>Tim Perpustakaan 2</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="Pp wa kosong.jpg" alt="UKS 1"></div>
-                    <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>Seksi UKS 1</p></div>
-                </div>
-
-                <div class="pengurus-card">
-                    <div class="card-img"><img src="diaz..jpg" alt="UKS 2"></div>
-                    <div class="card-info"><h3>Ruth Avangeddiaz Jerica</h3><p>Seksi UKS 2</p></div>
-                </div>
-
-            </div>
-        </section>
 
         <section id="daftar-murid">
             <h2 class="section-title">DAFTAR MURID KELAS IX B</h2>
+            <p style="color: var(--text-dim); margin-top: -20px; margin-bottom: 20px; font-size: 13px;">*Klik nama siswa untuk melihat info lengkap</p>
             <div class="murid-container">
                 <div class="murid-grid" id="muridList"></div>
             </div>
         </section>
     </main>
 
+    <div id="siswaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>INFO SISWA</h2>
+            <div class="info-box">
+                <span class="info-label">NAMA LENGKAP</span>
+                <span id="m-nama-lengkap" class="info-value">-</span>
+                
+                <span class="info-label">NAMA PANGGILAN</span>
+                <span id="m-panggilan" class="info-value">-</span>
+                
+                <span class="info-label">TANGGAL LAHIR</span>
+                <span id="m-tgl" class="info-value">-</span>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const slideData = [
-            { img: "aib.jpg", title: "HUT SEKOLAH 74" },
-            { img: "Retret.jpg", title: "RETRET KELAS" },
-            { img: "lupa.jpg", title: "LOMBA 17 AGUSTUS" },
-            { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }
-        ];
-
-        let currentSlide = 0;
-        const introCont = document.getElementById('introCont');
-        const thumbCont = document.getElementById('thumbCont');
-
-        function initSlider() {
-            slideData.forEach((s, i) => {
-                introCont.innerHTML += `<div class="wrapper" id="i-${i}"><h1>${s.title}</h1></div>`;
-                thumbCont.innerHTML += `<div class="thumbnail" id="t-${i}"><img src="${s.img}"></div>`;
-            });
-            showSlide(0);
-        }
-
-        function showSlide(idx) {
-            document.querySelectorAll('.wrapper, .thumbnail').forEach(el => el.classList.remove('active', 'zoom'));
-            document.getElementById(`i-${idx}`).classList.add('active');
-            document.getElementById(`t-${idx}`).classList.add('zoom');
-            currentSlide = idx;
-        }
-
-        document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
-        document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
-
-        // Daftar Murid sesuai Gambar 2026-01-04
-        const siswa = [
-            "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
-            "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
-            "CALLYSTA NATHANIA", "DWI OKTAVIA PUTRI KARLINA", "EL - JIREH JECONIA HERWANDHA",
-            "EVAN DANIEL FERNANDA", "FLORENCIA FLORA ROSARI", "GRACIA CLARITA MAHARANI",
-            "IGNATIUS HEBERT DEVIN LARO", "IGNATIUS LIONEL ANDRES", "IVANA DWI PUTRI",
-            "IVANDER DHAMMA SOEDIANTO", "JUAN CARLOS IMMANUEL GULO", "KASIH ROMAOLI SIMBOLON",
-            "KEISHA JOSEPHINE ANGELINA WIYONO", "LAURENTIA FINOLLA HERFANSHA", "MARCELLO REYNARD CAESARIO",
-            "NOVAL CRISTIAN MARCELIO", "REIKO EMMANUEL INDRAWANA", "RENATA AMANDA WIGUNA DAMINTO",
-            "RIZQULLAH NANDHIS PRATAMA", "RUTH AVANGEDDIAZ JERICA", "SKOLASTIKA NESHA NIRWASITA",
-            "VERBIKO CHRISTIAN SEMBIRING", "VERONICA ANGGELENA CALLISTA MAKIRANGENG",
-            "YECHONIA YUDRA RAJANI BEE", "YEHUDA DRIYO RAHARJO"
+        // Data Siswa Lengkap sesuai permintaan Anda
+        const dataSiswa = [
+            { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
+            { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
+            { no: 3, lengkap: "ANANTA CAHYA PUTRI", panggilan: "Putri", tgl: "22 Januari 2011" },
+            { no: 4, lengkap: "ANGELICA KEISHA FRISANANDA", panggilan: "Keisha", tgl: "26 Januari 2011" },
+            { no: 5, lengkap: "ARCHANGELA DEVIKA KYNDA KURNIAWAN", panggilan: "Vika", tgl: "7 Februari 2011" },
+            { no: 6, lengkap: "BRYAN PUTRA SADONO", panggilan: "Bryan", tgl: "12 September 2011" },
+            { no: 7, lengkap: "CALLYSTA NATHANIA", panggilan: "Callysta", tgl: "27 Mei 2011" },
+            { no: 8, lengkap: "DWI OKTAVIA PUTRI KARLINA", panggilan: "Via", tgl: "18 Oktober 2011" },
+            { no: 9, lengkap: "EL - JIREH JECONIA HERWANDHA", panggilan: "Eljireh", tgl: "29 Agustus 2011" },
+            { no: 10, lengkap: "EVAN DANIEL FERNANDA", panggilan: "Evan", tgl: "18 September 2010" },
+            { no: 11, lengkap: "FLORENCIA FLORA ROSARI", panggilan: "Flo", tgl: "5 Mei 2011" },
+            { no: 12, lengkap: "GRACIA CLARITA MAHARANI", panggilan: "Ghea", tgl: "7 Februari 2011" },
+            { no: 13, lengkap: "IGNATIUS HEBERT DEVIN LARO", panggilan: "Devin", tgl: "17 Agustus 2010" },
+            { no: 14, lengkap: "IGNATIUS LIONEL ANDRES", panggilan: "Lionel", tgl: "22 Mei 2011" },
+            { no: 15, lengkap: "IVANA DWI PUTRI", panggilan: "Ivana", tgl: "3 Agustus 2010" },
+            { no: 16, lengkap: "IVANDER DHAMMA SOEDIANTO", panggilan: "Ivander", tgl: "31 Maret 2010" },
+            { no: 17, lengkap: "JUAN CARLOS IMMANUEL GULO", panggilan: "Juan", tgl: "30 April 2011" },
+            { no: 18, lengkap: "KASIH ROMAOLI SIMBOLON", panggilan: "Kasih", tgl: "28 Juli 2011" },
+            { no: 19, lengkap: "KEISHA JOSEPHINE ANGELINA WIYONO", panggilan: "Keke", tgl: "6 Januari 2011" },
+            { no: 20, lengkap: "LAURENTIA FINOLLA HERFANSHA", panggilan: "Finola", tgl: "27 Oktober 2010" },
+            { no: 21, lengkap: "MARCELLO REYNARD CAESARIO", panggilan: "Cello", tgl: "10 Desember 2010" },
+            { no: 22, lengkap: "NOVAL CRISTIAN MARCELIO", panggilan: "Noval", tgl: "12 November 2010" },
+            { no: 23, lengkap: "OLIVIA YOHANA PUTRI", panggilan: "Olivia", tgl: "8 Juli" }, // Data Baru Olivia No 23
+            { no: 24, lengkap: "REIKO EMMANUEL INDRAWANA", panggilan: "Reiko", tgl: "24 September 2011" },
+            { no: 25, lengkap: "RENATA AMANDA WIGUNA DAMINTO", panggilan: "Rena", tgl: "15 Juni 2011" },
+            { no: 26, lengkap: "RIZQULLAH NANDHIS PRATAMA", panggilan: "Rizky", tgl: "7 September 2010" },
+            { no: 27, lengkap: "RUTH AVANGEDDIAZ JERICA", panggilan: "Diaz", tgl: "26 September 2010" },
+            { no: 28, lengkap: "SKOLASTIKA NESHA NIRWASITA", panggilan: "Nesha", tgl: "9 Februari 2011" },
+            { no: 29, lengkap: "VERBIKO CHRISTIAN SEMBIRING", panggilan: "Verbiko", tgl: "25 Agustus 2011" },
+            { no: 30, lengkap: "VERONICA ANGGELENA CALLISTA MAKIRANGENG", panggilan: "Ellen", tgl: "25 Agustus 2011" },
+            { no: 31, lengkap: "YECHONIA YUDRA RAJANI BEE", panggilan: "Yecho", tgl: "4 November 2010" },
+            { no: 32, lengkap: "YEHUDA DRIYO RAHARJO", panggilan: "Yehuda", tgl: "28 Juli 2011" }
         ];
 
         const muridGrid = document.getElementById('muridList');
-        siswa.forEach((n, i) => {
-            muridGrid.innerHTML += `
-                <div class="murid-item">
-                    <div class="murid-no">${i + 1}</div>
-                    <div class="murid-nama">${n}</div>
-                </div>`;
+        const modal = document.getElementById('siswaModal');
+
+        // Menampilkan Murid ke Grid
+        dataSiswa.forEach((siswa, index) => {
+            const item = document.createElement('div');
+            item.className = 'murid-item';
+            item.innerHTML = `
+                <div class="murid-no">${siswa.no}</div>
+                <div class="murid-nama">${siswa.lengkap}</div>
+            `;
+            item.onclick = () => showInfo(siswa);
+            muridGrid.appendChild(item);
         });
 
-        const btn = document.getElementById('hamburgerBtn');
-        const menu = document.getElementById('menuWrapper');
-        btn.onclick = () => {
-            menu.classList.toggle('active');
-            btn.innerHTML = menu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        };
-
-        function searchPengurus() {
-            let val = document.getElementById('searchInput').value.toLowerCase();
-            let items = document.getElementsByClassName('pengurus-card');
-            for (let item of items) {
-                let name = item.querySelector('h3').innerText.toLowerCase();
-                item.style.display = name.includes(val) ? "" : "none";
-            }
+        // Fungsi Tampilkan Modal
+        function showInfo(siswa) {
+            document.getElementById('m-nama-lengkap').innerText = siswa.lengkap;
+            document.getElementById('m-panggilan').innerText = siswa.panggilan;
+            document.getElementById('m-tgl').innerText = siswa.tgl;
+            modal.style.display = "block";
         }
 
-        window.onload = initSlider;
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Tutup modal jika klik di luar box
+        window.onclick = (event) => {
+            if (event.target == modal) closeModal();
+        }
     </script>
 </body>
 </html>
