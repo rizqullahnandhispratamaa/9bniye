@@ -51,7 +51,7 @@
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
         .card-info h3 { font-size: 13px; margin: 0; color: #fff; }
-        .card-info p { font-size: 11px; color: var(--text-dim); margin-top: 5px; }
+        .card-info p { font-size: 11px; color: var(--text-dim); margin-top: 5px; text-transform: uppercase; font-weight: bold; }
 
         /* DAFTAR MURID */
         .murid-container { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 50px; border: 1px solid #333; }
@@ -61,7 +61,7 @@
         .murid-no { font-weight: bold; color: var(--accent); width: 30px; }
         .murid-nama { font-size: 12px; text-transform: uppercase; }
 
-        /* MODAL */
+        /* MODAL POPUP */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
         .modal-content { background: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 380px; border-radius: 20px; text-align: center; position: relative; }
         .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
@@ -106,20 +106,48 @@
                     <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>WALI KELAS</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
-                    <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>KETUA KELAS</p></div>
+                    <div class="card-img"><img src="yehud.jpg"></div>
+                    <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>KETUA KELAS</p></div>
                 </div>
                 <div class="pengurus-card">
                     <div class="card-img"><img src="flooo.jpg"></div>
                     <div class="card-info"><h3>Florencia Flora Rosari</h3><p>WAKIL KETUA</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="yehud.jpg"></div>
-                    <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>SEKRETARIS</p></div>
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Rizqullah Nandhis</h3><p>SEKRETARIS 1</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Renata Amanda</h3><p>SEKRETARIS 2</p></div>
                 </div>
                 <div class="pengurus-card">
                     <div class="card-img"><img src="elen.jpg"></div>
                     <div class="card-info"><h3>Veronica Anggelena</h3><p>BENDAHARA</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Verbiko Christian</h3><p>IT 1</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Noval Cristian</h3><p>IT 2</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Ruth Avangeddiaz</h3><p>UKS 1</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>UKS 2</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Ananta Cahya Putri</h3><p>PERPUS 1</p></div>
+                </div>
+                <div class="pengurus-card">
+                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-info"><h3>Kasih Romaoli</h3><p>PERPUS 2</p></div>
                 </div>
             </div>
         </section>
@@ -148,7 +176,6 @@
     </div>
 
     <script>
-        // Data Slider
         const slideData = [
             { img: "aib.jpg", title: "HUT SEKOLAH 74" },
             { img: "Retret.jpg", title: "RETRET KELAS" },
@@ -175,7 +202,6 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // Data Murid
         const dataSiswa = [
             { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
             { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
