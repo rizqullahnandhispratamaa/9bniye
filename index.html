@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* TEMA & DASAR */
         :root {
             --bg-dark: #121212;
             --card-bg: #1c1c1c;
@@ -28,7 +27,6 @@
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER & NAVIGATION */
         header {
             background-color: rgba(28, 28, 28, 0.95);
             backdrop-filter: blur(10px);
@@ -55,7 +53,6 @@
 
         .hamburger { display: none; font-size: 24px; cursor: pointer; color: var(--accent); }
 
-        /* SLIDER SECTION */
         .custom-slider-container {
             position: relative; width: 100%; height: 500px; 
             border-radius: 20px; overflow: hidden; margin-top: 25px; margin-bottom: 50px;
@@ -79,17 +76,15 @@
             border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; 
         }
 
-        /* STRUKTUR PENGURUS */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; }
         .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .card-img { height: 220px; overflow: hidden; }
+        .card-img { height: 220px; overflow: hidden; background: #222; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
         .card-info h3 { font-size: 14px; margin: 0; color: #fff; }
         .card-info p { font-size: 11px; color: var(--text-dim); margin: 5px 0 0; }
 
-        /* DAFTAR MURID - KOLOM MEMBULAT */
         .murid-container {
             background: var(--card-bg);
             border-radius: 0 0 40px 40px; 
@@ -111,9 +106,8 @@
             border: 1px solid #333;
         }
         .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
-        .murid-nama { font-size: 13px; color: #eee; text-transform: uppercase; }
+        .murid-nama { font-size: 12px; color: #eee; text-transform: uppercase; }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .menu-wrapper {
@@ -123,7 +117,6 @@
             }
             .menu-wrapper.active { right: 0; }
             nav ul { flex-direction: column; width: 100%; }
-            .search-bar { width: 100%; }
             .introduce h1 { font-size: 2.5rem; }
         }
     </style>
@@ -136,11 +129,7 @@
                 <img src="logo.jpg" alt="Logo">
                 <span class="logo-name">IXBNUEVE</span>
             </a>
-
-            <div class="hamburger" id="hamburgerBtn">
-                <i class="fas fa-bars"></i>
-            </div>
-
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
             <div class="menu-wrapper" id="menuWrapper">
                 <nav>
                     <ul>
@@ -150,7 +139,7 @@
                     </ul>
                 </nav>
                 <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Cari nama pengurus..." onkeyup="searchPengurus()">
+                    <input type="text" id="searchInput" placeholder="Cari pengurus..." onkeyup="searchPengurus()">
                 </div>
             </div>
         </div>
@@ -169,60 +158,73 @@
         </div>
 
         <div style="margin-bottom: 50px;">
-            <img src="1_2_3.jpeg" style="width: 100%; border-radius: 15px;">
+            <img src="123.jpeg" style="width: 100%; border-radius: 15px;" alt="Banner IX B">
         </div>
 
         <section id="struktur-kelas">
             <h2 class="section-title">STRUKTUR PENGURUS KELAS</h2>
             <div class="pengurus-grid" id="pengurusGrid">
+                
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg"></div>
+                    <div class="card-img"><img src="kiki.jpg" alt="Wali Kelas"></div>
                     <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>Wali Kelas</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Yehuda.jpg"></div>
+                    <div class="card-img"><img src="yehud.jpg" alt="Ketua Kelas"></div>
                     <div class="card-info"><h3>Yehuda Driyo Raharjo</h3><p>Ketua Kelas</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Flo.jpg"></div>
+                    <div class="card-img"><img src="flooo.jpg" alt="Wakil Ketua"></div>
                     <div class="card-info"><h3>Florencia Flora Rosari</h3><p>Wakil Ketua Murid</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Rizky.jpg"></div>
+                    <div class="card-img"><img src="kiki.jpg" alt="Sekretaris 1"></div>
                     <div class="card-info"><h3>Rizqullah Nandhis Pratama</h3><p>Sekretaris 1</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Renata.jpg"></div>
+                    <div class="card-img"><img src="rrenaaa.jpg" alt="Sekretaris 2"></div>
                     <div class="card-info"><h3>Renata Amanda Wiguna Daminto</h3><p>Sekretaris 2</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Ellen.jpg"></div>
+                    <div class="card-img"><img src="elen.jpg" alt="Bendahara"></div>
                     <div class="card-info"><h3>Veronica Anggelena Callista Makirangeng</h3><p>Bendahara</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Verbiko.jpg"></div>
+                    <div class="card-img"><img src="bko.jpg" alt="IT 1"></div>
                     <div class="card-info"><h3>Verbiko Christian Sembiring</h3><p>Tim IT 1</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Noval.jpg"></div>
+                    <div class="card-img"><img src="nopal.jpg" alt="IT 2"></div>
                     <div class="card-info"><h3>Noval Cristian Marcelio</h3><p>Tim IT 2</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Putri.jpg"></div>
+                    <div class="card-img"><img src="putri.jpg" alt="Perpus 1"></div>
                     <div class="card-info"><h3>Ananta Cahya Putri</h3><p>Tim Perpustakaan 1</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Kasih.jpg"></div>
+                    <div class="card-img"><img src="kasiiii.jpg" alt="Perpus 2"></div>
                     <div class="card-info"><h3>Kasih Romaoli Simbolon</h3><p>Tim Perpustakaan 2</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="SnapInsta.to_520637116_17844314559536268_489255932458929426_n.jpg"></div>
+                    <div class="card-img"><img src="kiki.jpg" alt="UKS 1"></div>
                     <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>Seksi UKS 1</p></div>
                 </div>
+
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="Diaz.jpg"></div>
+                    <div class="card-img"><img src="diaz.jpg" alt="UKS 2"></div>
                     <div class="card-info"><h3>Ruth Avangeddiaz Jerica</h3><p>Seksi UKS 2</p></div>
                 </div>
+
             </div>
         </section>
 
@@ -235,7 +237,6 @@
     </main>
 
     <script>
-        // Data Slider
         const slideData = [
             { img: "aib.jpg", title: "HUT SEKOLAH 74" },
             { img: "Retret.jpg", title: "RETRET KELAS" },
@@ -265,7 +266,7 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // Data Murid (Olivia No 23, lainnya bergeser)
+        // Daftar Murid sesuai Gambar 2026-01-04
         const siswa = [
             "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
             "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
@@ -274,11 +275,10 @@
             "IGNATIUS HEBERT DEVIN LARO", "IGNATIUS LIONEL ANDRES", "IVANA DWI PUTRI",
             "IVANDER DHAMMA SOEDIANTO", "JUAN CARLOS IMMANUEL GULO", "KASIH ROMAOLI SIMBOLON",
             "KEISHA JOSEPHINE ANGELINA WIYONO", "LAURENTIA FINOLLA HERFANSHA", "MARCELLO REYNARD CAESARIO",
-            "NOVAL CRISTIAN MARCELIO", 
-            "OLIVIA YOHANA PUTRI", // No 23
-            "REIKO EMMANUEL INDRAWANA", "RENATA AMANDA WIGUNA DAMINTO", "RIZQULLAH NANDHIS PRATAMA",
-            "RUTH AVANGEDDIAZ JERICA", "SKOLASTIKA NESHA NIRWASITA", "VERBIKO CHRISTIAN SEMBIRING",
-            "VERONICA ANGGELENA CALLISTA MAKIRANGENG", "YECHONIA YUDRA RAJANI BEE", "YEHUDA DRIYO RAHARJO"
+            "NOVAL CRISTIAN MARCELIO", "REIKO EMMANUEL INDRAWANA", "RENATA AMANDA WIGUNA DAMINTO",
+            "RIZQULLAH NANDHIS PRATAMA", "RUTH AVANGEDDIAZ JERICA", "SKOLASTIKA NESHA NIRWASITA",
+            "VERBIKO CHRISTIAN SEMBIRING", "VERONICA ANGGELENA CALLISTA MAKIRANGENG",
+            "YECHONIA YUDRA RAJANI BEE", "YEHUDA DRIYO RAHARJO"
         ];
 
         const muridGrid = document.getElementById('muridList');
@@ -290,7 +290,6 @@
                 </div>`;
         });
 
-        // Hamburger Menu
         const btn = document.getElementById('hamburgerBtn');
         const menu = document.getElementById('menuWrapper');
         btn.onclick = () => {
@@ -298,7 +297,6 @@
             btn.innerHTML = menu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         };
 
-        // Search Function
         function searchPengurus() {
             let val = document.getElementById('searchInput').value.toLowerCase();
             let items = document.getElementsByClassName('pengurus-card');
