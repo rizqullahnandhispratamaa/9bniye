@@ -27,23 +27,25 @@
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         .logo-name { font-weight: 700; font-size: 22px; }
 
-        /* STRUKTUR PENGURUS */
-        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
+        /* SECTION TITLE */
+        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* PENGURUS GRID */
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
-        .card-img { height: 230px; overflow: hidden; background: #222; }
+        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .pengurus-card:hover { transform: translateY(-5px); border-color: #555; }
+        .card-img { height: 250px; overflow: hidden; background: #222; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
-        .card-info h3 { font-size: 13px; margin: 0; color: #fff; }
-        .card-info p { font-size: 11px; color: var(--text-dim); margin-top: 5px; text-transform: uppercase; font-weight: bold; }
+        .card-info h3 { font-size: 13px; margin: 0; color: #fff; line-height: 1.4; }
+        .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 8px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
 
         /* DAFTAR MURID */
         .murid-container { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 50px; border: 1px solid #333; }
         .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-        .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
-        .murid-item:hover { border-color: white; transform: scale(1.02); }
-        .murid-no { font-weight: bold; color: var(--accent); width: 30px; }
-        .murid-nama { font-size: 11px; text-transform: uppercase; }
+        .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; transition: 0.2s; }
+        .murid-no { font-weight: bold; color: var(--accent); width: 35px; font-size: 14px; }
+        .murid-nama { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -54,18 +56,18 @@
                 <img src="logo.jpg" alt="Logo">
                 <span class="logo-name">IXBNUEVE</span>
             </a>
-            <nav><a href="#daftar-murid" style="color:white; text-decoration:none; font-size:14px; font-weight:bold;">DAFTAR MURID</a></nav>
+            <nav><a href="#daftar-murid" style="color:white; text-decoration:none; font-size:13px; font-weight:bold;">DAFTAR MURID</a></nav>
         </div>
     </header>
 
     <main class="container">
-        <img src="123.jpeg" style="width: 100%; border-radius: 20px; margin: 40px 0;" alt="Banner">
+        <img src="123.jpeg" style="width: 100%; border-radius: 20px; margin: 40px 0; object-fit: cover; height: 300px;" alt="Banner">
 
         <section id="pengurus">
             <h2 class="section-title">STRUKTUR PENGURUS KELAS</h2>
             <div class="pengurus-grid">
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="1.jpg"></div>
                     <div class="card-info"><h3>Agoes Risdianto, S.Pd</h3><p>WALI KELAS</p></div>
                 </div>
                 <div class="pengurus-card">
@@ -97,11 +99,11 @@
                     <div class="card-info"><h3>Noval Cristian</h3><p>IT 2</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="pp kosong _).jpg"></div>
+                    <div class="card-img"><img src="diaz..jpg"></div>
                     <div class="card-info"><h3>Ruth Avangeddiaz</h3><p>UKS 1</p></div>
                 </div>
                 <div class="pengurus-card">
-                    <div class="card-img"><img src="kiki.jpg"></div>
+                    <div class="card-img"><img src="2.jpg"></div>
                     <div class="card-info"><h3>Ignatius Lionel Andres</h3><p>UKS 2</p></div>
                 </div>
                 <div class="pengurus-card">
@@ -116,7 +118,7 @@
         </section>
 
         <section id="daftar-murid">
-            <h2 class="section-title">DAFTAR SISWA KELAS IX B</h2>
+            <h2 class="section-title">DAFTAR SISWA</h2>
             <div class="murid-container">
                 <div class="murid-grid" id="muridList"></div>
             </div>
@@ -124,7 +126,6 @@
     </main>
 
     <script>
-        // Data berdasarkan gambar absen yang dikirim
         const dataSiswa = [
             "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
             "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
