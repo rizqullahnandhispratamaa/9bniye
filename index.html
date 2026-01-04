@@ -26,8 +26,9 @@
         .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
         
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; cursor: pointer; }
+        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .nav-links a:hover { color: var(--text-dim); }
 
         /* SEARCH STYLING */
@@ -37,7 +38,7 @@
             padding: 8px 15px 8px 35px; border-radius: 25px; font-size: 13px;
             outline: none; width: 180px; transition: 0.3s;
         }
-        .search-input:focus { width: 250px; border-color: white; }
+        .search-input:focus { width: 220px; border-color: white; }
         .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
 
         .menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
@@ -57,10 +58,12 @@
         .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
         .main-banner { width: 100%; border-radius: 20px; margin: 40px 0; background: #000; text-align: center; }
-        .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; }
+        .main-banner img { width: 100%; border-radius: 20px; display: block; object-fit: contain; max-height: 500px; margin: 0 auto; }
+
+        /* SECTION TITLES */
+        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 1px; }
 
         /* PENGURUS GRID */
-        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; font-family: 'Bebas Neue'; font-size: 2rem; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
         .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
         .card-img { height: 250px; overflow: hidden; }
@@ -70,12 +73,12 @@
         .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 5px; font-weight: bold; }
 
         /* MURID LIST */
-        .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 50px; }
+        .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 80px; }
         .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
         .murid-item:hover { border-color: white; transform: translateY(-3px); }
         .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
 
-        /* MODAL INFO SISWA */
+        /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
         .modal-content { background: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 400px; border-radius: 20px; position: relative; }
         .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
@@ -83,9 +86,15 @@
         .info-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; display: block; margin-top: 10px; }
         .info-value { font-weight: bold; font-size: 15px; color: #fff; display: block; border-bottom: 1px solid #333; padding-bottom: 5px; }
 
+        /* FOOTER */
+        footer { background: #1c1c1c; padding: 30px 0; text-align: center; border-top: 1px solid #333; margin-top: 50px; }
+        .footer-text { font-size: 14px; color: var(--text-dim); margin: 0; letter-spacing: 1px; }
+        .footer-text b { color: white; }
+
         /* MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
             .menu-btn { display: block; }
+            .nav-wrapper { gap: 0; }
             .nav-links { 
                 display: none; flex-direction: column; position: absolute; 
                 top: 100%; left: 0; width: 100%; background: #1c1c1c; 
@@ -94,20 +103,15 @@
             .nav-links.active { display: flex; }
             
             /* Search di Garis 3 */
-            .header-container > .search-wrapper { display: none; }
             .nav-links .search-wrapper { display: block; width: 100%; order: -1; }
             .nav-links .search-input { width: 100% !important; box-sizing: border-box; }
+            .header-container > .nav-wrapper > .search-wrapper { display: none; }
 
-            /* Slider & Banner Kecil di HP agar tidak terpotong */
-            .custom-slider-container { height: 200px; margin-top: 10px; }
+            .custom-slider-container { height: 200px; }
             .thumbnail img { object-fit: contain; }
             .introduce h1 { font-size: 1.2rem; }
-            .navigation { bottom: 10px; right: 20px; }
-            .nav-controls button { padding: 5px 15px; font-size: 10px; }
-
             .main-banner img { max-height: 200px; }
             .pengurus-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .card-img { height: 180px; }
         }
     </style>
 </head>
@@ -120,17 +124,24 @@
                 <span class="logo-name">IXBNUEVE</span>
             </a>
             
-            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            
-            <nav class="nav-links" id="navLinks">
+            <div class="nav-wrapper">
+                <nav class="nav-links" id="navLinks">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="search-input mainSearch" placeholder="Cari nama...">
+                    </div>
+                    <a href="#top" onclick="toggleMenu()"><i class="fas fa-home"></i> HOME</a>
+                    <a href="#pengurus-sec" onclick="toggleMenu()"><i class="fas fa-users"></i> PENGURUS</a>
+                    <a href="#daftar-murid" onclick="toggleMenu()"><i class="fas fa-list"></i> MURID</a>
+                </nav>
+
                 <div class="search-wrapper">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="mainSearch" class="search-input" placeholder="Cari nama...">
+                    <input type="text" class="search-input mainSearch" placeholder="Cari nama...">
                 </div>
-                <a href="#top" onclick="toggleMenu()">HOME</a>
-                <a href="#pengurus-sec" onclick="toggleMenu()">PENGURUS</a>
-                <a href="#daftar-murid" onclick="toggleMenu()">MURID</a>
-            </nav>
+
+                <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            </div>
         </div>
     </header>
 
@@ -169,10 +180,16 @@
         </section>
     </main>
 
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2024 IXBNUEVE. Design by <b>Kiki</b></p>
+        </div>
+    </footer>
+
     <div id="siswaModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 style="font-family:'Bebas Neue'; text-align:center; color:white;">INFO SISWA</h2>
+            <h2 style="font-family:'Bebas Neue'; text-align:center; color:white; letter-spacing:2px;">INFO SISWA</h2>
             <div class="info-box">
                 <span class="info-label">Nama Lengkap</span><span id="m-nama" class="info-value"></span>
                 <span class="info-label">Nama Panggilan</span><span id="m-panggilan" class="info-value"></span>
@@ -183,7 +200,6 @@
     </div>
 
     <script>
-        // Toggle Navigasi HP
         function toggleMenu() { 
             const links = document.getElementById('navLinks');
             if(window.innerWidth <= 768) links.classList.toggle('active'); 
@@ -214,7 +230,7 @@
         document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
         document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
 
-        // Data Murid Lengkap
+        // Data Murid
         const dataSiswa = [
             { no: 1, lengkap: "ADELFIYANCE PASKUA TANU", panggilan: "Andi", tgl: "15 Juni 2010" },
             { no: 2, lengkap: "ALBERT ALEXANDER DARMAWAN", panggilan: "Albert", tgl: "17 Juni 2011" },
@@ -250,7 +266,6 @@
             { no: 32, lengkap: "YEHUDA DRIYO RAHARJO", panggilan: "Yehuda", tgl: "28 Juli 2011" }
         ];
 
-        // Render Murid
         const ml = document.getElementById('muridList');
         dataSiswa.forEach((s) => {
             const item = document.createElement('div');
@@ -267,15 +282,17 @@
             ml.appendChild(item);
         });
 
-        // Search Logic
-        document.getElementById('mainSearch').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('.murid-item').forEach(el => {
-                el.style.display = el.getAttribute('data-nama').includes(term) ? 'flex' : 'none';
-            });
-            document.querySelectorAll('.pengurus-card').forEach(el => {
-                const nama = el.getAttribute('data-nama').toLowerCase();
-                el.style.display = nama.includes(term) ? 'block' : 'none';
+        // Search Logic for both PC and Mobile Inputs
+        document.querySelectorAll('.mainSearch').forEach(input => {
+            input.addEventListener('input', function(e) {
+                const term = e.target.value.toLowerCase();
+                document.querySelectorAll('.murid-item').forEach(el => {
+                    el.style.display = el.getAttribute('data-nama').includes(term) ? 'flex' : 'none';
+                });
+                document.querySelectorAll('.pengurus-card').forEach(el => {
+                    const nama = el.getAttribute('data-nama').toLowerCase();
+                    el.style.display = nama.includes(term) ? 'block' : 'none';
+                });
             });
         });
 
