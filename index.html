@@ -20,32 +20,59 @@
         body { font-family: 'Rubik', sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: #f0f0f0; overflow-x: hidden; }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER */
+        /* HEADER & NAVIGATION */
         header { background-color: rgba(28, 28, 28, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #333; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; }
         .logo-area { display: flex; align-items: center; text-decoration: none; color: white; }
         .logo-area img { height: 42px; width: 42px; border-radius: 50%; border: 2px solid var(--accent); margin-right: 12px; }
-        .logo-name { font-weight: 700; font-size: 22px; }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+        .menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
 
-        /* SECTION TITLE */
-        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; letter-spacing: 1px; }
+        /* SLIDER */
+        .custom-slider-container { position: relative; width: 100%; height: 450px; border-radius: 20px; overflow: hidden; margin-top: 25px; }
+        .introduce { position: absolute; width: 100%; height: 100%; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
+        .introduce .wrapper { position: absolute; opacity: 0; transition: 0.8s; width: 80%; }
+        .introduce .wrapper.active { opacity: 1; pointer-events: all; }
+        .introduce h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin: 0; }
+        .thumbnail-list { position: absolute; width: 100%; height: 100%; z-index: 10; }
+        .thumbnail { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 1.2s; }
+        .thumbnail.zoom { opacity: 1; }
+        .thumbnail img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
+        .navigation { position: absolute; bottom: 30px; right: 50px; z-index: 40; }
+        .nav-controls button { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 10px 25px; cursor: pointer; font-weight: bold; }
 
-        /* PENGURUS GRID */
+        /* PENGURUS */
+        .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
         .pengurus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .pengurus-card:hover { transform: translateY(-5px); border-color: #555; }
+        .pengurus-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
         .card-img { height: 250px; overflow: hidden; background: #222; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
         .card-info { padding: 15px; text-align: center; }
-        .card-info h3 { font-size: 13px; margin: 0; color: #fff; line-height: 1.4; }
-        .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 8px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        .card-info h3 { font-size: 13px; margin: 0; color: #fff; }
+        .card-info p { font-size: 10px; color: var(--text-dim); margin-top: 5px; font-weight: bold; }
 
-        /* DAFTAR MURID */
+        /* DAFTAR MURID (BISA DIPENCET) */
         .murid-container { background: var(--card-bg); border-radius: 20px; padding: 30px; margin-bottom: 50px; border: 1px solid #333; }
         .murid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-        .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; transition: 0.2s; }
-        .murid-no { font-weight: bold; color: var(--accent); width: 35px; font-size: 14px; }
-        .murid-nama { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .murid-item { display: flex; align-items: center; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .murid-item:hover { border-color: white; transform: translateX(5px); }
+        .murid-no { font-weight: bold; color: var(--accent); width: 35px; }
+
+        /* MODAL POPUP */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { background: #1c1c1c; margin: 15% auto; padding: 30px; border: 1px solid #fff; width: 85%; max-width: 380px; border-radius: 20px; position: relative; }
+        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 28px; cursor: pointer; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 67px; left: 0; width: 100%; background: #1c1c1c; padding: 20px; gap: 15px; border-bottom: 1px solid #333; }
+            .nav-links.active { display: flex; }
+            .menu-btn { display: block; }
+            .introduce h1 { font-size: 2rem; }
+            .custom-slider-container { height: 300px; }
+        }
     </style>
 </head>
 <body>
@@ -56,15 +83,31 @@
                 <img src="logo.jpg" alt="Logo">
                 <span class="logo-name">IXBNUEVE</span>
             </a>
-            <nav><a href="#daftar-murid" style="color:white; text-decoration:none; font-size:13px; font-weight:bold;">DAFTAR MURID</a></nav>
+            
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#"><i class="fas fa-home"></i> HOME</a>
+                <a href="#"><i class="fas fa-search"></i> SEARCH</a>
+                <a href="#pengurus"><i class="fas fa-users"></i> PENGURUS</a>
+                <a href="#daftar-murid"><i class="fas fa-list"></i> DAFTAR MURID</a>
+            </nav>
         </div>
     </header>
 
     <main class="container">
-        <img src="123.jpeg" style="width: 100%; border-radius: 20px; margin: 40px 0; object-fit: cover; height: 300px;" alt="Banner">
+        <div class="custom-slider-container">
+            <div class="introduce" id="introCont"></div>
+            <div class="thumbnail-list" id="thumbCont"></div>
+            <div class="navigation">
+                <div class="nav-controls"><button id="prevBtn">PREV</button><button id="nextBtn">NEXT</button></div>
+            </div>
+        </div>
+
+        <img src="123.jpeg" style="width: 100%; border-radius: 20px; margin: 40px 0; height: 300px; object-fit: cover;">
 
         <section id="pengurus">
-            <h2 class="section-title">STRUKTUR PENGURUS KELAS</h2>
+            <h2 class="section-title">STRUKTUR PENGURUS</h2>
             <div class="pengurus-grid">
                 <div class="pengurus-card">
                     <div class="card-img"><img src="Pp wa kosong.jpg"></div>
@@ -118,14 +161,55 @@
         </section>
 
         <section id="daftar-murid">
-            <h2 class="section-title">DAFTAR SISWA</h2>
+            <h2 class="section-title">DAFTAR MURID</h2>
             <div class="murid-container">
                 <div class="murid-grid" id="muridList"></div>
             </div>
         </section>
     </main>
 
+    <div id="siswaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="font-family:'Bebas Neue'; text-align:center;">INFO SISWA</h2>
+            <div style="background:#252525; padding:15px; border-radius:10px;">
+                <p style="font-size:11px; color:var(--text-dim); margin:0;">NAMA LENGKAP</p>
+                <p id="m-nama" style="font-weight:bold; margin:5px 0 15px;"></p>
+                <p style="font-size:11px; color:var(--text-dim); margin:0;">NOMOR ABSEN</p>
+                <p id="m-absen" style="font-weight:bold; margin:5px 0 0;"></p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+        const slideData = [
+            { img: "aib.jpg", title: "HUT SEKOLAH 74" },
+            { img: "Retret.jpg", title: "RETRET KELAS" },
+            { img: "lupa.jpg", title: "KEGIATAN KELAS" },
+            { img: "bulan bahasa.jpg", title: "BULAN BAHASA" }
+        ];
+
+        let currentSlide = 0;
+        function initSlider() {
+            const ic = document.getElementById('introCont');
+            const tc = document.getElementById('thumbCont');
+            slideData.forEach((s, i) => {
+                ic.innerHTML += `<div class="wrapper" id="i-${i}"><h1>${s.title}</h1></div>`;
+                tc.innerHTML += `<div class="thumbnail" id="t-${i}"><img src="${s.img}"></div>`;
+            });
+            showSlide(0);
+        }
+        function showSlide(idx) {
+            document.querySelectorAll('.wrapper, .thumbnail').forEach(el => el.classList.remove('active', 'zoom'));
+            document.getElementById(`i-${idx}`).classList.add('active');
+            document.getElementById(`t-${idx}`).classList.add('zoom');
+            currentSlide = idx;
+        }
+        document.getElementById('nextBtn').onclick = () => showSlide((currentSlide + 1) % slideData.length);
+        document.getElementById('prevBtn').onclick = () => showSlide((currentSlide - 1 + slideData.length) % slideData.length);
+
         const dataSiswa = [
             "ADELFIYANCE PASKUA TANU", "ALBERT ALEXANDER DARMAWAN", "ANANTA CAHYA PUTRI",
             "ANGELICA KEISHA FRISANANDA", "ARCHANGELA DEVIKA KYNDA KURNIAWAN", "BRYAN PUTRA SADONO",
@@ -145,8 +229,17 @@
             const item = document.createElement('div');
             item.className = 'murid-item';
             item.innerHTML = `<div class="murid-no">${index + 1}</div><div class="murid-nama">${nama}</div>`;
+            item.onclick = () => {
+                document.getElementById('m-nama').innerText = nama;
+                document.getElementById('m-absen').innerText = index + 1;
+                document.getElementById('siswaModal').style.display = "block";
+            };
             ml.appendChild(item);
         });
+
+        function closeModal() { document.getElementById('siswaModal').style.display = "none"; }
+        window.onclick = (e) => { if(e.target.id == "siswaModal") closeModal(); }
+        window.onload = initSlider;
     </script>
 </body>
 </html>
