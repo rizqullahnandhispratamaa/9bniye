@@ -103,11 +103,11 @@
             }
             .nav-links.active { display: flex; }
             
-            /* Tampilan Search di dalam menu garis tiga HP */
-            .nav-links .search-wrapper { display: block; width: 100%; order: -1; }
+            /* Tampilan Search di dalam menu HP */
+            .nav-links .search-wrapper { display: block !important; width: 100%; order: -1; }
             .nav-links .search-input { width: 100% !important; box-sizing: border-box; }
             
-            /* Sembunyikan Search utama (PC) saat di mode HP */
+            /* Sembunyikan Search PC Utama saat di HP */
             .header-container > .nav-wrapper > .search-wrapper { display: none; }
 
             .custom-slider-container { height: 180px; }
@@ -132,7 +132,7 @@
             
             <div class="nav-wrapper">
                 <nav class="nav-links" id="navLinks">
-                    <div class="search-wrapper">
+                    <div class="search-wrapper" style="display: none;">
                         <i class="fas fa-search"></i>
                         <input type="text" class="search-input mainSearch" placeholder="Cari teman...">
                     </div>
